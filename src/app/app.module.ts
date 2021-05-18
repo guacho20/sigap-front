@@ -4,10 +4,11 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgprimeCoreModule } from 'ngprime-core';
 import { AppComponent } from './app.component';
 import { AuthModule } from './admin/auth/auth.module';
 import { AdminModule } from './admin/pages/admin.module';
-import { NgprimeCoreModule } from 'ngprime-core';
 import { environment } from '../environments/environment.prod';
 
 @NgModule({
@@ -21,7 +22,8 @@ import { environment } from '../environments/environment.prod';
     HttpClientModule,
     AuthModule,
     AdminModule,
-    NgprimeCoreModule.forRoot(environment)
+    NgprimeCoreModule.forRoot(environment),
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
