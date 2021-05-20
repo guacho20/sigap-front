@@ -69,7 +69,7 @@ export class PermisoComponent implements OnInit, AfterViewInit {
     if (await this.tabTabla1.isGuardar()) {
       console.log('entre al guardar');
       if (await this.tabTabla2.isGuardar()) {
-        // await this.utilitarioSvc.guardarPantalla(this.tabTabla1, this.tabTabla2);
+        await this.utilitarioSvc.guardarPantalla(this.tabTabla1, this.tabTabla2);
         this.tabTabla1.actualizar();
       }
     }

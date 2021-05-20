@@ -24,7 +24,7 @@ export class EmpresaComponent implements OnInit, AfterViewInit {
   async guardar(): Promise<void> {
     if (await this.tabTabla1.isGuardar()) {
       console.log('entre al guardar');
-      // this.utilitarioSvc.guardarPantalla(this.tabTabla1);
+      this.utilitarioSvc.guardarPantalla(this.tabTabla1);
     }
   }
 

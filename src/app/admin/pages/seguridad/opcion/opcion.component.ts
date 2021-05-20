@@ -48,7 +48,7 @@ export class OpcionComponent implements OnInit, AfterViewInit {
 
   async guardar(): Promise<void> {
     if (await this.tabTabla1.isGuardar()) {
-      // this.utilitarioSvc.guardarPantalla(this.tabTabla1);
+      this.utilitarioSvc.guardarPantalla(this.tabTabla1);
     }
 
   }
