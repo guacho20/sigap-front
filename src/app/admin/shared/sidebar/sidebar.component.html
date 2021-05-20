@@ -38,7 +38,7 @@
                 </a>
                 <ul *ngFor="let submenu of menu.submenu" class="nav nav-treeview">
                     <li class="nav-item">
-                        <a [routerLink]="submenu.path" routerLinkActive="active" class="nav-link">
+                        <a [routerLink]="submenu.path" routerLinkActive="active" class="nav-link" (click)="onClick(submenu)">
                             <i *ngIf="submenu.icono" class="nav-icon {{submenu.icono}}"></i>
                             <i *ngIf="!submenu.icono" class="far fa-circle nav-icon"></i>
                             <p>{{submenu.titulo}}</p>

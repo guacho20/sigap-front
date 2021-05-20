@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
         return console.log('cambio la contraseña');
       }
       // this.spinner.hide();
-      this.router.navigate(['/1']);
+      this.router.navigate(['/private']);
       this.spinner.hide();
       //  console.log('Ingrese al sistema');
     }, (err) => {

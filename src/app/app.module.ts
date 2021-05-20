@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './admin/auth/auth.module';
 import { AdminModule } from './admin/pages/admin.module';
 import { environment } from '../environments/environment.prod';
+import { ServerErrorInterceptor } from './interceptors/server-error.interceptor';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { environment } from '../environments/environment.prod';
     NgprimeCoreModule.forRoot(environment),
     NgxSpinnerModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: ServerErrorInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

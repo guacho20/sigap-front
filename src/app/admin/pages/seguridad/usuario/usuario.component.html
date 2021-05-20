@@ -1,0 +1,30 @@
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-0">
+            <div class="col-sm-6">
+                <button type="button" class="btn btn-info btn-sm mr-2" (click)="insertar()"><i class="fas fa-plus"></i> Insertar</button>
+                <button type="button" class="btn btn-success btn-sm mr-2" (click)="guardar()"><i class="fas fa-save"></i> Guardar</button>
+                <button type="button" class="btn btn-danger btn-sm mr2" (click)="eliminar()"><i class="fas fa-trash"></i> Eliminar</button>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Dashboard v1</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary card-outline">
+                    <div class="card-body">
+                        <ngp-tabla #tabTabla1></ngp-tabla>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
