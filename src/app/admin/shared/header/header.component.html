@@ -56,5 +56,38 @@
                 <a (click)="logout()" class="dropdown-item"><i class="fa fa-power-off mr-3"></i>Logout</a>
             </ul>
         </li>
+        <li class="nav-item dropdown user-menu" *ngIf="usuario">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                <img src="https://i1.wp.com/ilirhushi.me/wp-content/uploads/2018/03/angular_logo.png?fit=250%2C250&ssl=1" class="user-image img-circle elevation-2" alt="User Image">
+                <span class="d-none d-md-inline">{{usuario.nombre}}</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                <!-- User image -->
+                <li class="user-header bg-primary">
+                    <img src="https://i1.wp.com/ilirhushi.me/wp-content/uploads/2018/03/angular_logo.png?fit=250%2C250&ssl=1" class="img-circle elevation-2" alt="User Image">
+                    <p>
+                        {{usuario.nombre}}
+                        <span class="description mb-0">{{usuario.perfil}}</span>
+                        <small>{{fechaUltimoAcceso}}</small>
+                    </p>
+                </li>
+                <!-- Menu Body -->
+                <li class="user-body">
+                    <ul class="nav nav-pills flex-column">
+                        <li class="nav-item hvr-grow">
+                            <a [routerLink]="['profile']" routerLinkActive="active" class="nav-link">
+                                <i class="fas fa-inbox mr-3"></i> Perfil
+                                <span class="badge bg-primary float-right">Profile</span>
+                            </a>
+                        </li>
+                        <li class="nav-item hvr-grow cursor">
+                            <a (click)="logout()" class="nav-link">
+                                <i class="far fa-envelope mr-3"></i> Logout
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
     </ul>
 </nav>

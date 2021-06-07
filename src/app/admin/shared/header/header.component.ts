@@ -8,7 +8,13 @@ import { AuthService } from 'ngprime-core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private authSvc: AuthService) { }
+  usuario = [];
+  fechaUltimoAcceso: string;
+
+  constructor(private authSvc: AuthService) {
+    this.usuario = authSvc.getUserData();
+    this.fechaUltimoAcceso = localStorage.getItem('ultimoAcceso');
+  }
 
   ngOnInit(): void {
   }
