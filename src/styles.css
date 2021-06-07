@@ -9,3 +9,18 @@
 @import '~admin-lte/dist/css/adminlte.min.css';
 @import './assets/css/animate.css';
 @import './assets/css/hover.css';
+.fast {
+    -webkit-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both
+}
+
+.selector,
+.cursor {
+    cursor: pointer;
+}
+
+.w20 {
+    width: 20px;
+}
