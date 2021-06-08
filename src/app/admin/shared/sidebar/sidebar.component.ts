@@ -4,7 +4,7 @@ import { AuthService, UtilitarioService } from 'ngprime-core';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  styleUrls: []
 })
 export class SidebarComponent implements OnInit {
 
@@ -20,8 +20,7 @@ export class SidebarComponent implements OnInit {
 
   onClick(opcion): void {
     if (this.utilitarioSvc.isUndefined(opcion.data)) {
-      console.log('Click en la opcion', opcion);
-      // this.se.auditoriaAccesoPantalla(opcion.data, this.utilitario.getPlataforma());
+      this.authSvc.auditoriaAccesoPantalla(opcion.data);
     }
   }
 
