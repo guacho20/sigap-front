@@ -15,6 +15,7 @@ const routes: Routes = [
       { path: 'no-autorizado', component: Page401Component },
       { path: 'auditoria', canActivate: [SeguridadGuard], loadChildren: () => import('./auditoria/auditoria.module').then(m => m.AuditoriaModule) },
       { path: 'seguridad', canActivate: [SeguridadGuard], loadChildren: () => import('./seguridad/seguridad.module').then(m => m.SeguridadModule) },
+      { path: 'gerencialpdot', canActivate: [SeguridadGuard], loadChildren: () => import('./gerencialpdot/gerencialpdot.module').then(m => m.GerencialpdotModule) },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: '**', component: Page404Component },
     ]
