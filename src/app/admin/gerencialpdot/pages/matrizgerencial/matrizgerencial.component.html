@@ -1,18 +1,41 @@
 <app-breadcrumbs #barBotones></app-breadcrumbs>
 <section class="content">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card card-primary card-outline">
-                    <div class="card-body">
-                        <ngp-tabla #tabTabla1></ngp-tabla>
-                        <hr>
-                        <ngp-tabla #tabTabla2></ngp-tabla>
-                        <hr>
-                        <ngp-tabla #tabTabla3></ngp-tabla>
-                    </div>
+        <div class="card card-primary ">
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-12 overflow-auto" style="max-height: 200px;">
+                    <ngp-tabla #tabTabla1></ngp-tabla>
                 </div>
+              </div>
+              <div class="row">
+                <div class="col-12 col-sm-8">
+                    <ngp-tabla #tabTabla2></ngp-tabla>
+                </div>
+                <!-- /.col -->
+                <div class="col-12 col-sm-4">
+                    <p class="lead">Payment Methods:</p>
+                    <img class="img-fluid" src="https://logos-marcas.com/wp-content/uploads/2020/04/PayPal-Logo.png" alt="Visa">       
+                         <!--  <p class="text-muted well well-sm shadow-none">
+                            Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem
+                            plugg
+                            dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
+                          </p> -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                    <ngp-tabla #tabTabla3></ngp-tabla>
+                </div>
+              </div>
             </div>
-        </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+              Visit <a href="https://select2.github.io/">Select2 documentation</a> for more examples and information about
+              the plugin.
+            </div>
+          </div>
     </div>
 </section>

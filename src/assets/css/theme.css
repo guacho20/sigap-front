@@ -1,0 +1,33 @@
+/* TOOLTIP */
+
+.p-tooltip .p-tooltip-text {
+    font-size: 0.8rem !important;
+}
+
+
+/* TIEREDMENU */
+
+.p-tieredmenu .p-menuitem-link {
+    font-size: 0.8rem !important;
+    padding: 0.5rem 1rem !important;
+}
+
+
+/*  CONTEXTMENU */
+
+.p-contextmenu .p-menuitem-link {
+    padding: 0.5rem 1rem !important;
+    font-size: 0.8rem !important;
+}
+
+
+/* AUTO COMPLETE */
+
+.p-autocomplete-panel .p-autocomplete-items .p-autocomplete-item {
+    padding: 0.1rem 1rem !important;
+    font-size: 0.8rem !important;
+}
+
+.p-autocomplete-panel .p-autocomplete-items:not(.p-autocomplete-virtualscroll) {
+    padding: 0.2rem 0 !important;
+}

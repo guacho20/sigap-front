@@ -15,7 +15,13 @@
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both
 }
-
+#global {
+	height: 300px;
+	width: 200px;
+	border: 1px solid #ddd;
+	background: #f1f1f1;
+	overflow-y: scroll;
+}
 .selector,
 .cursor {
     cursor: pointer;
@@ -25,6 +31,9 @@
     width: 20px;
 }
 
+.w50 {
+    width: 50px;
+}
 .swal2-container .swal2-popup {
     transition-property: all !important;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;

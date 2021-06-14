@@ -21,9 +21,11 @@ export class MatrizgerencialComponent extends BarMenu implements OnInit, AfterVi
    async ngAfterViewInit(){
     await this.tabTabla1.setTabla('ge_objetivo', 'ide_objetivo', 1);
     this.tabTabla1.agregarRelacion(this.tabTabla2);
+    // this.tabTabla1.filasPorPagina = 5;
     this.tabTabla1.dibujar();
     await this.tabTabla2.setTabla('ge_matriz_frecuencia', 'ide_matriz', 2);
     this.tabTabla2.agregarRelacion(this.tabTabla3);
+    this.tabTabla2.setTipoFormulario();
     this.tabTabla2.dibujar();
     await this.tabTabla3.setTabla('ge_variacion', 'ide_variacion', 3);
     this.tabTabla3.dibujar();
