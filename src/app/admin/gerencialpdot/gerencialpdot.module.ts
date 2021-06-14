@@ -7,13 +7,17 @@ import { GerencialpdotRoutingModule } from './gerencialpdot-routing.module';
 import { FrecuenciaComponent } from './pages/frecuencia/frecuencia.component';
 import { PerspectivaComponent } from './pages/perspectiva/perspectiva.component';
 import { MatrizgerencialComponent } from './pages/matrizgerencial/matrizgerencial.component';
+import { ProyectoComponent } from './pages/proyecto/proyecto.component';
+import { DireccionComponent } from './pages/direccion/direccion.component';
 
 
 @NgModule({
   declarations: [
     FrecuenciaComponent,
     PerspectivaComponent,
-    MatrizgerencialComponent
+    MatrizgerencialComponent,
+    ProyectoComponent,
+    DireccionComponent
   ],
   imports: [
     CommonModule,
