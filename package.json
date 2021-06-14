@@ -27,7 +27,7 @@
     "@fullcalendar/timegrid": "^5.7.0",
     "admin-lte": "^3.1.0",
     "file-saver": "^2.0.5",
-    "ngprime-core": "^0.1.0",
+    "ngprime-core": "^0.1.1",
     "ngx-bootstrap": "^6.2.0",
     "ngx-spinner": "^11.0.1",
     "primeflex": "^2.0.0",
