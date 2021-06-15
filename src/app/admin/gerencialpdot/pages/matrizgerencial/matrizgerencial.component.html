@@ -2,40 +2,31 @@
 <section class="content">
     <div class="container-fluid">
         <div class="card card-primary ">
-            <!-- /.card-header -->
-            <div class="card-body">
-              <div class="row">
-                <div class="col-md-12 overflow-auto" style="max-height: 200px;">
-                    <ngp-tabla #tabTabla1></ngp-tabla>
+            <div class="card-body ml-0">
+                <div class="row">
+                    <div class="col-md-12 overflow-auto" style="max-height: 200px;">
+                        <ngp-tabla #tabTabla1></ngp-tabla>
+                    </div>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-12 col-sm-8">
-                    <ngp-tabla #tabTabla2></ngp-tabla>
+                <div class="row">
+                    <div class="col-12 col-sm-9">
+                        <ngp-tabla #tabTabla2></ngp-tabla>
+                    </div>
+                    <div class="col-12 col-sm-3 text-center">
+                        <p class="lead bg_info">Semaforo:</p>
+                        <i *ngIf="semaforo==='verde'" class="fas fa-circle fa-8x text-green"></i>
+                        <i *ngIf="semaforo==='amarillo'" class="fas fa-circle fa-8x text-orange"></i>
+                        <i *ngIf="semaforo==='rojo'" class="fas fa-circle fa-8x text-red"></i>
+                        <i *ngIf="!semaforo" class="fas fa-circle fa-8x text-blue"></i>
+                        <h6 class="mt-2"><strong>Total: </strong> {{total}}</h6>
+                    </div>
                 </div>
-                <!-- /.col -->
-                <div class="col-12 col-sm-4">
-                    <p class="lead">Payment Methods:</p>
-                    <img class="img-fluid" src="https://logos-marcas.com/wp-content/uploads/2020/04/PayPal-Logo.png" alt="Visa">       
-                         <!--  <p class="text-muted well well-sm shadow-none">
-                            Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem
-                            plugg
-                            dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
-                          </p> -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <ngp-tabla #tabTabla3></ngp-tabla>
+                    </div>
                 </div>
-                <!-- /.col -->
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                    <ngp-tabla #tabTabla3></ngp-tabla>
-                </div>
-              </div>
             </div>
-            <!-- /.card-body -->
-            <div class="card-footer">
-              Visit <a href="https://select2.github.io/">Select2 documentation</a> for more examples and information about
-              the plugin.
-            </div>
-          </div>
+        </div>
     </div>
 </section>
