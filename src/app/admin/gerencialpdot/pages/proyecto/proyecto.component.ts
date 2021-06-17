@@ -17,9 +17,17 @@ export class ProyectoComponent extends BarMenu implements OnInit, AfterViewInit 
   }
   async ngAfterViewInit(): Promise<void> {
     await this.tabTabla1.setTabla('ge_proyecto', 'ide_proyecto', 1);
+    this.tabTabla1.setTitulo('REGISTRO DE PROYECTOS');
+    this.tabTabla1.getColumna('ide_proyecto').setNombreVisual('Código');
+    this.tabTabla1.getColumna('ide_componente').setNombreVisual('Componente');
+    this.tabTabla1.getColumna('detalle_proyecto').setNombreVisual('Proyecto');
+    this.tabTabla1.getColumna('vision_prpoyecto').setNombreVisual('Objetivo');
     this.tabTabla1.agregarRelacion(this.tabTabla2);
     this.tabTabla1.dibujar();
     await this.tabTabla2.setTabla('ge_objetivo', 'ide_objetivo', 2);
+    this.tabTabla2.getColumna('ide_objetivo').setNombreVisual('Código');
+    this.tabTabla2.getColumna('detalle_objetivo').setNombreVisual('Meta');
+    this.tabTabla2.setTitulo('METAS');
     this.tabTabla2.dibujar();
   }
 

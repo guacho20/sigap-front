@@ -17,8 +17,13 @@ export class ObjetivosComponent extends BarMenu implements OnInit, AfterViewInit
 
   async ngAfterViewInit(): Promise<void> {
     await this.tabTabla1.setTabla('ge_objetivo', 'ide_objetivo', 1);
+    this.tabTabla1.setTitulo('LISTADO DE PROYECTOS');
+    this.tabTabla1.getColumna('ide_objetivo').setNombreVisual('Código');
+    this.tabTabla1.getColumna('ide_proyecto').setNombreVisual('Proyecto');
+    this.tabTabla1.getColumna('detalle_objetivo').setNombreVisual('Meta');
     this.tabTabla1.dibujar();
     await this.tabTabla2.setTabla('ge_objetivo_direccion', 'ide_objdire', 2);
+    this.tabTabla2.setTitulo('DIRECCIONES RESPONSABLE');
     this.tabTabla2.dibujar();
   }
 
