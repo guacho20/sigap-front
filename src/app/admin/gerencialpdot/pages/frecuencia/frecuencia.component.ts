@@ -9,14 +9,13 @@ import { BarMenu } from 'src/app/admin/shared/class/barmenu';
   ]
 })
 export class FrecuenciaComponent extends BarMenu implements OnInit, AfterViewInit {
-  
-  @ViewChild('tabTabla1', {static: false}) tabTabla1: TablaComponent
+  @ViewChild('tabTabla1', {static: false}) tabTabla1: TablaComponent;
 
   constructor(private utilitarioSvc: UtilitarioService) {
     super();
   }
 
-  async ngAfterViewInit(){
+  async ngAfterViewInit(): Promise<void> {
     await this.tabTabla1.setTabla('ge_frecuencia', 'ide_frecuencia', 1);
     this.tabTabla1.dibujar();
   }

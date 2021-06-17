@@ -3,12 +3,12 @@ import { BarMenu } from 'src/app/admin/shared/class/barmenu';
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'app-direccion',
-  templateUrl: './direccion.component.html',
+  selector: 'app-componente',
+  templateUrl: './componente.component.html',
   styles: [
   ]
 })
-export class DireccionComponent extends BarMenu implements OnInit, AfterViewInit {
+export class ComponenteComponent extends BarMenu implements OnInit, AfterViewInit {
   @ViewChild('tabTabla1', { static: false }) tabTabla1: TablaComponent;
 
   constructor(private utilitarioSvc: UtilitarioService) {
@@ -16,7 +16,7 @@ export class DireccionComponent extends BarMenu implements OnInit, AfterViewInit
   }
 
   async ngAfterViewInit(): Promise<void> {
-    await this.tabTabla1.setTabla('ge_direccion', 'ide_direccion', 1);
+    await this.tabTabla1.setTabla('ge_componente', 'ide_componente', 1);
     this.tabTabla1.dibujar();
   }
 
@@ -40,4 +40,3 @@ export class DireccionComponent extends BarMenu implements OnInit, AfterViewInit
   }
 
 }
-

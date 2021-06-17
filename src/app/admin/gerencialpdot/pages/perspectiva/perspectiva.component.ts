@@ -9,26 +9,31 @@ import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
   ]
 })
 export class PerspectivaComponent extends BarMenu implements OnInit, AfterViewInit {
- 
-  @ViewChild('tabTabla1', {static: false}) tabTabla1: TablaComponent
-  constructor(private utilitarioSvc: UtilitarioService) 
-  {
+  @ViewChild('tabTabla1', { static: false }) tabTabla1: TablaComponent;
+  constructor(private utilitarioSvc: UtilitarioService) {
     super();
-   }
-   async ngAfterViewInit(){
+  }
+  async ngAfterViewInit(): Promise<void> {
     await this.tabTabla1.setTabla('ge_perspectiva', 'ide_perspectiva', 1);
     this.tabTabla1.dibujar();
   }
 
   ngOnInit(): void {
   }
+
   insertar(): void {
-    throw new Error('Method not implemented.');
+    if (this.tabTabla1.isFocus()) {
+      this.tabTabla1.insertar();
+    }
   }
-  guardar(): void {
-    throw new Error('Method not implemented.');
+  async guardar(): Promise<void> {
+    if (await this.tabTabla1.isGuardar()) {
+      this.utilitarioSvc.guardarPantalla(this.tabTabla1);
+    }
   }
   eliminar(): void {
-    throw new Error('Method not implemented.');
+    if (this.tabTabla1.isFocus()) {
+      this.tabTabla1.eliminar();
+    }
   }
 }

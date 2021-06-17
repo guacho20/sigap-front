@@ -9,6 +9,8 @@ import { PerspectivaComponent } from './pages/perspectiva/perspectiva.component'
 import { MatrizgerencialComponent } from './pages/matrizgerencial/matrizgerencial.component';
 import { ProyectoComponent } from './pages/proyecto/proyecto.component';
 import { DireccionComponent } from './pages/direccion/direccion.component';
+import { ComponenteComponent } from './pages/componente/componente.component';
+import { ObjetivosComponent } from './pages/objetivos/objetivos.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { DireccionComponent } from './pages/direccion/direccion.component';
     PerspectivaComponent,
     MatrizgerencialComponent,
     ProyectoComponent,
-    DireccionComponent
+    DireccionComponent,
+    ComponenteComponent,
+    ObjetivosComponent
   ],
   imports: [
     CommonModule,
