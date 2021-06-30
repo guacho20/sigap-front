@@ -4,10 +4,10 @@ import { RouterModule } from '@angular/router';
 
 import { ComponentesModule } from 'ngprime-core';
 
-import { HeaderComponent } from './header/header.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { FooterComponent } from './footer/footer.component';
-import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
+import { HeaderComponent } from './layout/header/header.component';
+import { SidebarComponent } from './layout/sidebar/sidebar.component';
+import { FooterComponent } from './layout/footer/footer.component';
+import { BreadcrumbsComponent } from './layout/breadcrumbs/breadcrumbs.component';
 import { Page404Component } from './page404/page404.component';
 import { Page401Component } from './page401/page401.component';
 

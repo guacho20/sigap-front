@@ -1,6 +1,6 @@
 import { AfterViewChecked, ViewChild, Component } from '@angular/core';
-import { BreadcrumbsComponent } from '../breadcrumbs/breadcrumbs.component';
 import { UtilitarioService } from 'ngprime-core';
+import { BreadcrumbsComponent } from '../layout/breadcrumbs/breadcrumbs.component';
 
 @Component({
     selector: 'app-barmenu',

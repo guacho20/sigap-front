@@ -9,6 +9,7 @@ import { Observable, throwError } from 'rxjs';
 import { AuthService } from 'ngprime-core';
 import { catchError } from 'rxjs/operators';
 import Swal from 'sweetalert2';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class ServerErrorInterceptor implements HttpInterceptor {
@@ -16,6 +17,12 @@ export class ServerErrorInterceptor implements HttpInterceptor {
   constructor(private authSvc: AuthService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    const url = `${environment.API_URL}`;
+
+    if (request.url.startsWith(url) === false) {
+      return next.handle(request);
+    }
+    
     const token = this.authSvc.getToken() || '';
     const body = {
       ide_segemp: localStorage.getItem('ide_segemp') || null,

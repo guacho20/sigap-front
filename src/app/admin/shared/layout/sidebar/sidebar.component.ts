@@ -19,9 +19,16 @@ export class SidebarComponent implements OnInit {
   }
 
   onClick(opcion): void {
+    this.authSvc.isMenu = true;
+    this.authSvc.setRuta(opcion.path);
     if (this.utilitarioSvc.isUndefined(opcion.data)) {
       this.authSvc.auditoriaAccesoPantalla(opcion.data);
     }
+  }
+
+  onMenu(opcion): void{
+    this.authSvc.isMenu = true;
+    this.authSvc.setRuta(opcion);
   }
 
 }

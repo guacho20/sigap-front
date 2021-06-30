@@ -7,13 +7,15 @@ import { OpcionesComponent } from './pages/opciones/opciones.component';
 import { PermisosComponent } from './pages/permisos/permisos.component';
 import { ComponentesModule } from 'ngprime-core';
 import { SharedModule } from '../shared/shared.module';
+import { EmpresaComponent } from './pages/empresa/empresa.component';
 
 
 @NgModule({
   declarations: [
     UsuariosComponent,
     OpcionesComponent,
-    PermisosComponent
+    PermisosComponent,
+    EmpresaComponent
   ],
   imports: [
     CommonModule,

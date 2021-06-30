@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
   usuario = [];
   sistemaOperativo: any = null;
   dispositivo: string;
+  ip: string;
 
   constructor(
     private authSvc: AuthService,
@@ -28,6 +29,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.fechaUltimoAcceso = localStorage.getItem('ultimoAcceso');
+    this.ip = this.utilitarioSvc.getIp();
     this.authSvc.pantallasMasUsadas().subscribe(resp => {
       this.pantallas = resp.datos;
     });

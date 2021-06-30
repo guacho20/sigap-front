@@ -23,4 +23,9 @@ export class HeaderComponent implements OnInit {
     this.authSvc.logout();
   }
 
+  onClick(opcion): void {
+    this.authSvc.isMenu = true;
+    this.authSvc.setRuta(opcion);
+  }
+
 }

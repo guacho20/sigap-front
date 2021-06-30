@@ -91,10 +91,10 @@
 }
 
 .swal2-styled.swal2-confirm {
-    border-radius: .25em;
     background-color: #001f3f !important;
     color: #fff !important;
-    font-size: 0.8rem !important;
+    font-size: 1rem !important;
+    border-radius: 25px;
 }
 
 .img-size-40 {
