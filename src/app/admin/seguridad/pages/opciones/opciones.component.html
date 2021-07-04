@@ -1,21 +1,29 @@
-<app-breadcrumbs #barBotones></app-breadcrumbs>
-<section class="content">
-    <div class="container-fluid">
-        <div class="row">
-            <section class="col-lg-3 connectedSortable ui-sortable">
-                <div class="card card-primary card-outline">
-                    <div class="card-body">
-                        <ngp-arbol #arbArbol></ngp-arbol>
-                    </div>
-                </div>
-            </section>
-            <section class="col-lg-9 connectedSortable ui-sortable">
-                <div class="card card-primary card-outline">
-                    <div class="card-body">
-                        <ngp-tabla #tabTabla1></ngp-tabla>
-                    </div>
-                </div>
-            </section>
+<app-breadcrumbs #barBotones>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a routerLink="/dashboard">Home</a>
+        </li>
+        <li class="breadcrumb-item">Seguridad</li>
+        <li class="breadcrumb-item active">Opciones</li>
+    </ol>
+</app-breadcrumbs>
+<div class="row">
+    <div class="col-3">
+        <div class="card card-hover">
+            <div class="card-header bg-info">
+            </div>
+            <div class="card-body">
+                <ngp-arbol #arbArbol></ngp-arbol>
+            </div>
         </div>
     </div>
-</section>
+    <div class="col-9">
+        <div class="card card-hover">
+            <div class="card-header bg-info">
+            </div>
+            <div class="card-body">
+                <ngp-tabla #tabTabla1></ngp-tabla>
+            </div>
+        </div>
+    </div>
+</div>

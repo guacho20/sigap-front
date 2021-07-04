@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+declare function customInitFunctions();
 
 @Component({
   selector: 'app-admin',
@@ -11,6 +12,6 @@ export class AdminComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    customInitFunctions();
   }
-
 }

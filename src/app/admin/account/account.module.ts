@@ -4,12 +4,13 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AccountRoutingModule } from './account-routing.module';
+import { ComponentesModule } from 'ngprime-core';
+import { SharedModule } from '../shared/shared.module';
 
 // componentes
 import { AccountComponent } from './account.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
-import { ComponentesModule } from 'ngprime-core';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { ComponentesModule } from 'ngprime-core';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    SharedModule,
     ComponentesModule
   ]
 })

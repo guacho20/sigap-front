@@ -26,6 +26,13 @@ export class ConsultaComponent implements OnInit, AfterViewInit{
     this.tabTabla1.getColumna('detalle_seauac').setNombreVisual('detalle');
     this.tabTabla1.getColumna('device_seauac').setNombreVisual('dispositivo');
     this.tabTabla1.getColumna('useragent_seauac').setNombreVisual('useragent');
+    this.tabTabla1.getColumna('ide_seauac').setLongitud(10);
+    this.tabTabla1.getColumna('fecha_seauac').setLongitud(10);
+    this.tabTabla1.getColumna('hora_seauac').setLongitud(10);
+    this.tabTabla1.getColumna('ip_seauac').setLongitud(10);
+    this.tabTabla1.getColumna('detalle_seauac').setLongitud(20);
+    this.tabTabla1.getColumna('device_seauac').setLongitud(10);
+    this.tabTabla1.getColumna('useragent_seauac').setLongitud(30);
     this.tabTabla1.setLectura(true);
     this.tabTabla1.dibujar();
   }

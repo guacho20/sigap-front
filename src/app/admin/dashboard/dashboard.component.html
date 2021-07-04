@@ -1,110 +1,110 @@
-<div class="content-header">
-    <div class="container-fluid">
+<div class="alert alert-info"> These icons work great with the <code>fa-spin</code> class. Check out the <a href="" class="alert-link">spinning icons example</a>. </div>
+<div class="row" *ngIf="usuario">
+    <!-- Column -->
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="d-flex flex-row">
+                <div class="p-10 bg-info">
+                    <h3 class="text-white box-cards m-b-0"><i class="fa fa-user"></i></h3>
+                </div>
+                <div class="align-self-center m-l-20">
+                    <h3 class="m-b-0 text-info">USUARIO</h3>
+                    <h5 class="text-muted m-b-0">{{usuario.username |uppercase}}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+    <!-- Column -->
+    <div class="col-lg-3 col-md-6 hvr-grow">
+        <div class="card ">
+            <div class="d-flex flex-row">
+                <div class="p-10 bg-success">
+                    <h3 class="text-white box-cards m-b-0"><i class="ti-wallet"></i></h3>
+                </div>
+                <div class="align-self-center m-l-20">
+                    <h3 class="m-b-0 text-success">PERFIL</h3>
+                    <h5 class="text-muted m-b-0">{{usuario.perfil |uppercase}}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+    <!-- Column -->
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="d-flex flex-row">
+                <div class="p-10 bg-inverse">
+                    <h3 class="text-white box-cards m-b-0"><i class="ti-desktop"></i></h3>
+                </div>
+                <div class="align-self-center m-l-20">
+                    <h3 class="m-b-0">DIRECCIÓN IP</h3>
+                    <h5 class="text-muted m-b-0">{{ip}}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+    <!-- Column -->
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="d-flex flex-row">
+                <div class="p-10 bg-primary">
+                    <h3 class="text-white box-cards m-b-0"><i class="ti-calendar"></i></h3>
+                </div>
+                <div class="align-self-center m-l-20">
+                    <h3 class="m-b-0 text-primary">ÚLTIMO ACCESO</h3>
+                    <h5 class="text-muted m-b-0">{{fechaUltimoAcceso}}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header bg-info">
+                <h4 class="m-b-0 text-white"><i class="fa fa-desktop mr-2"></i> PANTALLAS MÁS USADAS</h4>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover table-sm text-nowrap">
+                    <tbody>
+                        <tr *ngFor="let pantalla of pantallas">
+                            <td class="w20"><i class="fa fa-desktop"></i></td>
+                            <td class="cursor">{{pantalla.nombre_segopc}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header bg-info">
+                <h4 class="m-b-0 text-white"><i class="fa fa-desktop mr-2"></i> DISPOSITIVO</h4>
+            </div>
+            <div class="card-body">
+                <table class="table browser no-border">
+                    <tbody>
+                        <tr>
+                            <td style="width:40px">
+                                <img src="../assets/images/browser/firefox-logo.png" alt="logo">
+                            </td>
+                            <td>{{userAgent.browser.name }}</td>
+                            <td class="text-right"><label class="badge bg-danger float-right">Ver. {{userAgent.browser.version }}</label></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <i *ngIf="dispositivo==='movil'" class="fa fa-mobile-alt fa-2x"></i>
+                                <i *ngIf="dispositivo==='desktop'" class="fa fa-desktop fa-2x text-navy"></i>
+                            </td>
+                            <td>{{sistemaOperativo.nombre}}</td>
+                            <td class="text-right"><span class="float-right"><i class="fa-2x" [ngClass]="sistemaOperativo.icono"></i></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
-<section class="content">
-    <div class="container-fluid">
-        <div class="alert alert-primary alert-dismissible" *ngIf="usuario">
-            <i class="icon fas fa-info"></i> Bienvenido <strong>{{usuario.nombre|uppercase}}</strong>, Al Sistema Integrado Geográfico de Administración Pública (SIGAP).
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-sm-6 col-12">
-                <div class="info-box bg-primary">
-                    <span class="info-box-icon"><i class="far fa-user"></i></span>
-                    <div class="info-box-content">
-                        <span class="info-box-number">USUARIO</span>
-                        <span *ngIf="usuario" class="info-box-text">{{usuario.username |uppercase}}</span>
-                    </div>
-                    <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
-            </div>
-            <div class="col-md-3 col-sm-6 col-12">
-                <div class="info-box bg-info">
-                    <span class="info-box-icon"><i class="fas fa-users"></i></span>
-                    <div class="info-box-content">
-                        <span class="info-box-number">PERFIL</span>
-                        <span *ngIf="usuario" class="info-box-text">{{usuario.perfil |uppercase}}</span>
-                    </div>
-                    <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
-            </div>
-            <div class="col-md-3 col-sm-6 col-12">
-                <div class="info-box bg-success">
-                    <span class="info-box-icon"><i class="fas fa-laptop"></i></span>
-                    <div class="info-box-content">
-                        <span class="info-box-number">DIRECCIÓN IP</span>
-                        <span class="info-box-text">{{ip}}</span>
-                    </div>
-                    <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
-            </div>
-            <div class="col-md-3 col-sm-6 col-12">
-                <div class="info-box bg-danger">
-                    <span class="info-box-icon"><i class="fas fa-calendar-alt"></i></span>
-                    <div class="info-box-content">
-                        <span class="info-box-number">ÚLTIMO ACCESO</span>
-                        <span class="info-box-text">{{fechaUltimoAcceso}}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <section class="col-lg-6">
-                <div class="card">
-                    <div class="card-header bg-navy">
-                        <h3 class="card-title">
-                            <i class="fas fa-desktop mr-2"></i> PANTALLAS MÁS USADAS
-                        </h3>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body table-responsive p-0">
-                        <table class="table table-hover table-sm text-nowrap">
-                            <tbody>
-                                <tr *ngFor="let pantalla of pantallas">
-                                    <td class="w20"><i class="fas fa-desktop"></i></td>
-                                    <td class="cursor">{{pantalla.nombre_segopc}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
-            <section class="col-lg-6">
-                <div class="card">
-                    <div class="card-header bg-navy">
-                        <h3 class="card-title">NANEGADOR</h3>
-                        <div class="card-tools">
-                            <h3 class="card-title mr-3">PLATAFORMA</h3>
-                            <i class="fas fa-desktop"></i>
-                        </div>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="row no-print">
-                            <div class="col-12">
-                                <img [src]="'assets/img/browser/'+ userAgent.browser.name  + '-logo.png' " alt="Navegador" class="img-circle img-size-40 mr-2"> <label>{{userAgent.browser.name }}</label>
-                                <label class="badge bg-danger float-right">Ver. {{userAgent.browser.version }}</label>
-                            </div>
-                            <div class="col-12 mt-3">
-                                <i *ngIf="dispositivo==='movil'" class="fas fa-mobile-alt fa-2x mr-2"></i>
-                                <i *ngIf="dispositivo==='desktop'" class="fas fa-desktop fa-2x text-navy mr-2"></i> <label class="mr-3" style="vertical-align: middle;">{{sistemaOperativo.nombre}}</label>
-                                <span class="float-right"><i class="fa-2x" [ngClass]="sistemaOperativo.icono"></i></span>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-
-
-                        </div>
-                        <div class="col-md-12 mt-3">
-                            <h6></h6>
-
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </div>
-</section>

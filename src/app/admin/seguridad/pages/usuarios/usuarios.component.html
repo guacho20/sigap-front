@@ -1,14 +1,18 @@
-<app-breadcrumbs #barBotones></app-breadcrumbs>
-<section class="content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card card-primary card-outline">
-                    <div class="card-body">
-                        <ngp-tabla #tabTabla1></ngp-tabla>
-                    </div>
-                </div>
+<app-breadcrumbs #barBotones>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a routerLink="/dashboard">Home</a>
+        </li>
+        <li class="breadcrumb-item">Seguridad</li>
+        <li class="breadcrumb-item active">Usuario</li>
+    </ol>
+</app-breadcrumbs>
+<div class="row">
+    <div class="col-12">
+        <div class="box box-info">
+            <div class="card-body">
+                <ngp-tabla #tabTabla1></ngp-tabla>
             </div>
         </div>
     </div>
-</section>
+</div>

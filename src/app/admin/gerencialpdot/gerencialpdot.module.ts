@@ -1,7 +1,8 @@
 import { SharedModule } from './../shared/shared.module';
-import { ComponentesModule } from 'ngprime-core';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ComponentesModule } from 'ngprime-core';
 
 import { GerencialpdotRoutingModule } from './gerencialpdot-routing.module';
 import { FrecuenciaComponent } from './pages/frecuencia/frecuencia.component';
@@ -25,6 +26,7 @@ import { ObjetivosComponent } from './pages/objetivos/objetivos.component';
   ],
   imports: [
     CommonModule,
+    RouterModule,
     GerencialpdotRoutingModule,
     ComponentesModule,
     SharedModule

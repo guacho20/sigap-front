@@ -1,14 +1,16 @@
-<app-breadcrumbs soloBreadcrums=true titulo="Consulta de acceso al sistema"></app-breadcrumbs>
-<section class="content">
-    <div class="container-fluid">
-        <div class="row mt-2">
-            <div class="col-md-12">
-                <div class="card card-primary card-outline">
-                    <div class="card-body">
-                        <ngp-tabla #tabTabla1></ngp-tabla>
-                    </div>
-                </div>
+<app-breadcrumbs soloBreadcrums=true titulo="Consulta de acceso al sistema">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/dashboard">Home</a></li>
+        <li class="breadcrumb-item">Aditoria</li>
+        <li class="breadcrumb-item active">Consulta</li>
+    </ol>
+</app-breadcrumbs>
+<div class="row">
+    <div class="col-12">
+        <div class="box box-info">
+            <div class="card-body">
+                <ngp-tabla #tabTabla1></ngp-tabla>
             </div>
         </div>
     </div>
-</section>
+</div>

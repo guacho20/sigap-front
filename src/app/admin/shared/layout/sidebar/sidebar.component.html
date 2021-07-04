@@ -1,77 +1,39 @@
-<!-- Brand Logo -->
-<a href="index3.html" class="brand-link">
-    <img src="https://i1.wp.com/ilirhushi.me/wp-content/uploads/2018/03/angular_logo.png?fit=250%2C250&ssl=1"
-        alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-    <span class="brand-text font-weight-light">SIGAP</span>
-</a>
-
-<!-- Sidebar -->
-<div class="sidebar">
-    <!-- Sidebar Menu -->
-    <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column nav-compact nav-child-indent" data-widget="treeview"
-            role="menu" data-accordion="false">
-            <li class="nav-item">
-                <a [routerLink]="['dashboard']" routerLinkActive="active" (click)="onMenu('/dashboard')" class="nav-link ">
-                    <i class="fas fa-home"></i>
-                    <p class="ml-2">
-                        Dashboard
-                    </p>
-                </a>
-            </li>
-            <li class="nav-item has-treeview" *ngFor="let menu of menuItems">
-                <!--NIVEL 1 SIN SUBMENU -->
-                <a *ngIf="!menu.submenu" [routerLink]="menu.path" routerLinkActive="active" class="nav-link">
-                    <i *ngIf="menu.icono" class="nav-icon fas {{menu.icono}}"></i>
-                    <i *ngIf="!menu.icono" class="fas fa-bookmark"></i>
-                    <p>
-                        {{menu.titulo}}
-                    </p>
-                </a>
-                <!--NIVEL 1 CON SUBMENU -->
-                <a *ngIf="menu.submenu" class="nav-link">
-                    <i *ngIf="menu.icono" class="nav-icon {{menu.icono}}"></i>
-                    <i *ngIf="!menu.icono" class="nav-icon fas fa-copy"></i>
-                    <p>
-                        {{menu.titulo}}
-                        <i class="fas fa-angle-left right"></i>
-                    </p>
-                </a>
-                <ul *ngFor="let submenu of menu.submenu" class="nav nav-treeview">
-                    <!-- NIVEL 2 SIN SUBMENU -->
-                    <li *ngIf="!submenu.submenu" class="nav-item">
-                        <a [routerLink]="submenu.path" routerLinkActive="active" class="nav-link"
-                            (click)="onClick(submenu)">
-                            <i *ngIf="submenu.icono" class="nav-icon {{submenu.icono}}"></i>
-                            <i *ngIf="!submenu.icono" class="far fa-circle nav-icon"></i>
-                            <p>{{submenu.titulo}}</p>
-                        </a>
-                    </li>
-                    <!-- NIVEL 2 CON SUBMENU -->
-                    <li *ngIf="submenu.submenu" class="nav-item has-treeview">
-                        <a class="nav-link"
-                            (click)="onClick(submenu)">
-                            <i *ngIf="submenu.icono" class="nav-icon {{submenu.icono}}"></i>
-                            <i *ngIf="!submenu.icono" class="far fa-circle nav-icon"></i>
-                            <p>{{submenu.titulo}}</p>
-                            <i class="right fas fa-angle-left"></i>
-                        </a>
-                        <ul class="nav nav-treeview" *ngFor="let menu of submenu.submenu">
-                            <!-- NIVEL 3 SIN SUBMENU -->
-                            <li *ngIf="!menu.submenu" class="nav-item">
-                                <a [routerLink]="menu.path" routerLinkActive="active" class="nav-link"
-                                    (click)="onClick(menu)">
-                                    <i *ngIf="menu.icono" class="nav-icon {{menu.icono}}"></i>
-                                    <i *ngIf="!menu.icono" class="far fa-dot-circle nav-icon"></i>
-                                    <p>{{menu.titulo}}</p>
-                                </a>
+<aside class="left-sidebar">
+    <!-- Sidebar scroll-->
+    <div class="scroll-sidebar">
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav">
+            <ul id="sidebarnav">
+                <li *ngFor="let item of menuItems">
+                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+                        <i class="mdi mdi-arrange-send-backward"></i>
+                        <span class="hide-menu"> {{ item.titulo }}
+                            <span class="label label-rouded label-themecolor pull-right">
+                                {{ item.submenu.length }}
+                            </span>
+                        </span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse">
+                        <ng-container *ngFor="let submenu of item.submenu">
+                            <li *ngIf="!submenu.submenu">
+                                <a [routerLink]="submenu.path" (click)="onClick(submenu)" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"> {{ submenu.titulo }} </a>
                             </li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
-    <!-- /.sidebar-menu -->
-</div>
-<!-- /.sidebar -->
+                            <li *ngIf="submenu.submenu">
+                                <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+                                    <span class="hide-menu"> {{ submenu.titulo }}</span>
+                                </a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <ng-container *ngFor="let item of submenu.submenu">
+                                        <li><a [routerLink]="item.path" (click)="onClick(item)">{{item.titulo}}</a></li>
+                                    </ng-container>
+                                </ul>
+                            </li>
+                        </ng-container>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <!-- End Sidebar navigation -->
+    </div>
+    <!-- End Sidebar scroll-->
+</aside>

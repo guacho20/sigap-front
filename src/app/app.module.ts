@@ -5,6 +5,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AdminModule } from './admin/admin.module';
 import { AppRoutingModule } from './app-routing.module';
+import { GraficoModule } from './grafico/grafico.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgprimeCoreModule } from 'ngprime-core';
 import { AppComponent } from './app.component';
@@ -21,6 +22,7 @@ import { ServerErrorInterceptor } from './interceptors/server-error.interceptor'
     AppRoutingModule,
     HttpClientModule,
     AdminModule,
+    GraficoModule,
     NgprimeCoreModule.forRoot(environment),
     NgxSpinnerModule
   ],

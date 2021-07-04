@@ -1,0 +1,98 @@
+<div class="fix-header single-column card-no-border fix-sidebar">
+    <div id="main-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="box box-info">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Products Availability</h4>
+                                        <h6 class="card-subtitle">March 2017</h6>
+
+                                    </div>
+                                    <div class="activity-box">
+                                        <div class="d-flex no-block">
+
+                                            <div class="btn-group ml-auto m-t-10">
+                                                <a class="icon-options-vertical link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="javascript:void(0)">Action</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="javascript:void(0)">Separated link</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
+                                        <p-chart type="horizontalBar" [data]="basicData" [options]="basicOptions"></p-chart>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex no-block">
+                                            <h4 class="card-title">Activity</h4>
+                                            <div class="btn-group ml-auto m-t-10">
+                                                <a href="JavaScript:void(0)" class="icon-options-vertical link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="javascript:void(0)">Action</a>
+                                                    <a class="dropdown-item" href="javascript:void(0)">Another action</a>
+                                                    <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="javascript:void(0)">Separated link</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="activity-box">
+                                        <p-chart type="bar" [data]="multiAxisData" [options]="multiAxisOptions"></p-chart>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <h5>Stacked</h5>
+                                    <p-chart type="bar" [data]="stackedData" [options]="stackedOptions"></p-chart>
+                                </div>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+                                            <div>
+                                                <h3 class="card-title m-b-5"><span class="lstick"></span>Total Visits </h3>
+                                            </div>
+                                            <div class="ml-auto">
+                                                <select class="custom-select b-0">
+                                                    <option selected="">January 2017</option>
+                                                    <option value="1">February 2017</option>
+                                                    <option value="2">March 2017</option>
+                                                    <option value="3">April 2017</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Container fluid  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+        <footer class="footer">
+            © 2017 Admin Pro by wrappixel.com
+        </footer>
+        <!-- ============================================================== -->
+        <!-- End footer -->
+        <!-- ============================================================== -->
+    </div>
+
+</div>

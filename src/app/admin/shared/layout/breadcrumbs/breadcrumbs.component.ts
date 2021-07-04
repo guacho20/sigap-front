@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ContentChild, Input, OnInit, TemplateRef } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
@@ -8,11 +8,15 @@ import { ChangeDetectorRef } from '@angular/core';
   ]
 })
 export class BreadcrumbsComponent implements OnInit {
-
+  @ContentChild(TemplateRef) derecha;
   @Input() soloBreadcrums ?= false;
   @Input() titulo ?= '';
 
-  ruta = [];
+  ruta = [
+    {"url": "/dashboard", "ruta": "Home"},
+    {"url": "", "ruta": "Seguridad"},
+    {"url": "", "ruta": "Interno"}
+  ];
 
   isBotonInsertar = true;
   isBotonGuardar = true;

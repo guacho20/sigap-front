@@ -4,13 +4,37 @@
     display: flex;
 }
 
+.login-box,
+.register-box {
+    width: 360px;
+}
+
+.login-logo,
+.register-logo {
+    font-size: 2.1rem;
+    font-weight: 300;
+    margin-bottom: .9rem;
+    text-align: center;
+}
+
+.login-logo a,
+.register-logo a {
+    color: #495057;
+}
+
+.login-box-msg,
+.register-box-msg {
+    margin: 0;
+    padding: 0 20px 20px;
+    text-align: center;
+}
+
 .img-fondo {
     position: fixed;
     height: 100%;
     content: "";
     width: 70%;
     position: absolute;
-    z-index: -1;
 }
 
 .izquierda {
@@ -25,6 +49,7 @@
     background: linear-gradient(90deg, #212F3C, rgb(4, 84, 121));
     opacity: 0.2;
 }
+
 .izquierda h1 {
     margin-bottom: 30px;
     font-size: 40px;
@@ -36,6 +61,7 @@
     font-size: 16px;
     font-weight: 500;
 }
+
 .derecha {
     width: 25%;
     display: flex;
@@ -46,14 +72,15 @@
 }
 
 .title {
-    color: #001f3f;
+    color: #001f3f !important;
     padding: 0%;
     margin: 0%;
     font-size: 115px;
     font-weight: 900;
     /* text-shadow: 4px 4px 0 #ffffff, 6px 6px 0 #001f3f; */
 }
-.slogan{
+
+.slogan {
     font-size: 1rem;
     font-weight: bold;
     text-align: center;
