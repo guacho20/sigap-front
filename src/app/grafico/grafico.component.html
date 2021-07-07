@@ -5,94 +5,91 @@
                 <div class="col-12">
                     <div class="box box-info">
                         <div class="row">
-                            <div class="col-lg-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Products Availability</h4>
-                                        <h6 class="card-subtitle">March 2017</h6>
-
-                                    </div>
-                                    <div class="activity-box">
-                                        <div class="d-flex no-block">
-
-                                            <div class="btn-group ml-auto m-t-10">
-                                                <a class="icon-options-vertical link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item" href="javascript:void(0)">Action</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="javascript:void(0)">Separated link</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
-                                        <p-chart type="horizontalBar" [data]="basicData" [options]="basicOptions"></p-chart>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="d-flex no-block">
-                                            <h4 class="card-title">Activity</h4>
-                                            <div class="btn-group ml-auto m-t-10">
-                                                <a href="JavaScript:void(0)" class="icon-options-vertical link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item" href="javascript:void(0)">Action</a>
-                                                    <a class="dropdown-item" href="javascript:void(0)">Another action</a>
-                                                    <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="javascript:void(0)">Separated link</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="activity-box">
-                                        <p-chart type="bar" [data]="multiAxisData" [options]="multiAxisOptions"></p-chart>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <h5>Stacked</h5>
-                                    <p-chart type="bar" [data]="stackedData" [options]="stackedOptions"></p-chart>
-                                </div>
+                            <div class="col-lg-5">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="d-flex">
                                             <div>
-                                                <h3 class="card-title m-b-5"><span class="lstick"></span>Total Visits </h3>
+                                                <h4 class="card-title"><strong>Seguimiento de PDOT</strong> </h4>
                                             </div>
                                             <div class="ml-auto">
-                                                <select class="custom-select b-0">
-                                                    <option selected="">January 2017</option>
-                                                    <option value="1">February 2017</option>
-                                                    <option value="2">March 2017</option>
-                                                    <option value="3">April 2017</option>
-                                                </select>
+                                                <button (click)="actualizar()" class="btn-sm btn waves-effect waves-light btn-outline-primary"><i class="fa  fa-refresh"></i></button>
                                             </div>
                                         </div>
-                                        <div>
-                                            <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
+                                        <hr>
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlInput1" class="form-label">Proyecto: </label>
+                                            <ngp-combo #comProyecto width="500px"></ngp-combo>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlInput1" class="form-label">Meta: </label>
+                                            <ngp-combo #comMeta width="500px"></ngp-combo>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlInput1" class="form-label">Indicador: </label>
+                                            <ngp-combo #comIndicador width="500px"></ngp-combo>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <select [(ngModel)]="isTipo" style="width: 150px; " class="custom-select pull-right">
+                                            <option value="1">Barra</option>
+                                            <option value="2">Dona</option>
+                                            <option value="3">Polar Area</option>
+                                            <option value="4">Radar</option>
+                                        </select>
+                                        <h3><strong>Grafico estadistico</strong></h3>
+                                        <p-chart *ngIf="isTipo==1" height="255px" type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
+                                        <p-chart *ngIf="isTipo==2" type="doughnut" [data]="basicData"></p-chart>
+                                        <p-chart *ngIf="isTipo==3" type="polarArea" [data]="basicData"></p-chart>
+                                        <p-chart *ngIf="isTipo==4" type="radar" [data]="basicData"></p-chart>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="box box-primary">
+                                    <div class="box-body table-responsive no-padding">
+                                        <table #dt class="table table-hover table-sm table-bordered">
+                                            <tbody style="font-size: 15px;">
+                                                <tr class="bg-dark" style="color: #fff;">
+                                                    <th>Proyecto</th>
+                                                    <th>Meta</th>
+                                                    <th>Perspectiva</th>
+                                                    <th>Suma</th>
+                                                    <th>Año</th>
+                                                </tr>
+                                                <tr *ngFor="let item of datos">
+                                                    <td>{{item.detalle_proyecto}}</td>
+                                                    <td>{{item.detalle_meta}}</td>
+                                                    <td>{{item.detalle_perspectiva}}</td>
+                                                    <td class="text-right">{{item.suma_porce}}</td>
+                                                    <td>{{item.anio}}</td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.box-body -->
+                                    <!-- <div class="box-footer clearfix">
+                                        Fuente: GAD Provincial Santo Domingo de los Tsáchilas - Dirección de Ambiente<br> Elaborado: Dirección de Planificación - GAD Provincial Santo Domingo de los Tsáchilas
+                                        <a (click)="exportExcel()" class="btn btn-sm btn-info btn-flat pull-right"><i class="fa fa-cloud-download"></i> Descargar Tabla de Datos</a>
+                                        <button class="btn" (click)="dt.exportCSV()"></button>
+                                    </div>
+ -->
+                                </div>
+                                <!-- /.box -->
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- ============================================================== -->
-        <!-- End Container fluid  -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- footer -->
-        <!-- ============================================================== -->
-        <footer class="footer">
-            © 2017 Admin Pro by wrappixel.com
+        <footer class="footer text-center">
+            <strong>Copyright &copy; 2021 <a routerLink="/">SIGAP</a> </strong> (Sistema Integrado Geográfico de Administración Pública).
         </footer>
-        <!-- ============================================================== -->
-        <!-- End footer -->
-        <!-- ============================================================== -->
     </div>
 
 </div>

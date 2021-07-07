@@ -18,6 +18,11 @@ export class TipoAccionComponent extends BarMenu implements OnInit, AfterViewIni
 
   async ngAfterViewInit(): Promise<void> {
     await this.tabTabla1.setTabla('seg_accion_auditoria', 'ide_seacau', 1);
+    this.tabTabla1.setTitulo('REGISTRO ACCIONES DE AUDITORIA');
+    this.tabTabla1.getColumna('ide_seacau').setNombreVisual('código');
+    this.tabTabla1.getColumna('nombre_segacau').setNombreVisual('nombre');
+    this.tabTabla1.getColumna('descripcion_seacau').setNombreVisual('descripción');
+    this.tabTabla1.getColumna('ide_seacau').setLongitud(10);
     this.tabTabla1.dibujar();
   }
 

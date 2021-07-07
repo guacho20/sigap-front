@@ -1,4 +1,6 @@
-<div class="alert alert-info"> These icons work great with the <code>fa-spin</code> class. Check out the <a href="" class="alert-link">spinning icons example</a>. </div>
+<div class="alert alert-primary alert-dismissible">
+    <i class="icon fa fa-info"></i> Bienvenido <strong>{{user.nombre|uppercase}}</strong>, Al Sistema Integrado Geográfico de Administración Pública (SIGAP).
+</div>
 <div class="row" *ngIf="usuario">
     <!-- Column -->
     <div class="col-lg-3 col-md-6">
@@ -89,7 +91,7 @@
                     <tbody>
                         <tr>
                             <td style="width:40px">
-                                <img src="../assets/images/browser/firefox-logo.png" alt="logo">
+                                <img src="assets/images/browser/firefox-logo.png" alt="logo">
                             </td>
                             <td>{{userAgent.browser.name }}</td>
                             <td class="text-right"><label class="badge bg-danger float-right">Ver. {{userAgent.browser.version }}</label></td>

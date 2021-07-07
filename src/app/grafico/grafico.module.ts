@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ComponentesModule } from 'ngprime-core';
-import {ChartModule} from 'primeng/chart';
+import { FormsModule } from '@angular/forms';
 
 import { GraficoRoutingModule } from './grafico-routing.module';
+import { ComponentesModule } from 'ngprime-core';
 import { GraficoComponent } from './grafico.component';
-
 
 @NgModule({
   declarations: [
@@ -14,7 +13,8 @@ import { GraficoComponent } from './grafico.component';
   imports: [
     CommonModule,
     GraficoRoutingModule,
-    ComponentesModule
+    ComponentesModule,
+    FormsModule
   ]
 })
 export class GraficoModule { }

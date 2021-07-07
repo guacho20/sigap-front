@@ -17,6 +17,10 @@ export class ComponenteComponent extends BarMenu implements OnInit, AfterViewIni
 
   async ngAfterViewInit(): Promise<void> {
     await this.tabTabla1.setTabla('ge_componente', 'ide_componente', 1);
+    this.tabTabla1.setTitulo('REGISTRO DE COMPONENTES');
+    await this.tabTabla1.getColumna('ide_componente').setNombreVisual('código');
+    await this.tabTabla1.getColumna('detalle_compo').setNombreVisual('componente');
+    await this.tabTabla1.getColumna('ide_componente').setLongitud(10);
     this.tabTabla1.dibujar();
   }
 

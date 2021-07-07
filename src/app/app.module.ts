@@ -11,10 +11,12 @@ import { NgprimeCoreModule } from 'ngprime-core';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment.prod';
 import { ServerErrorInterceptor } from './interceptors/server-error.interceptor';
+import { NopagefoundComponent } from './nopagefound/nopagefound.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NopagefoundComponent
   ],
   imports: [
     BrowserModule,

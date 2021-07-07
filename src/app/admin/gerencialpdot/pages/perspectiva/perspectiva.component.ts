@@ -15,6 +15,11 @@ export class PerspectivaComponent extends BarMenu implements OnInit, AfterViewIn
   }
   async ngAfterViewInit(): Promise<void> {
     await this.tabTabla1.setTabla('ge_perspectiva', 'ide_perspectiva', 1);
+    this.tabTabla1.setTitulo('REGISTRO DE PERSPECTIVA');
+    this.tabTabla1.getColumna('ide_perspectiva').setNombreVisual('código');
+    this.tabTabla1.getColumna('detalle_perspectiva').setNombreVisual('PERSPECTIVA');
+    this.tabTabla1.getColumna('abreviatura_ystmen').setNombreVisual('abreviatura');
+    this.tabTabla1.getColumna('ide_perspectiva').setLongitud(10);
     this.tabTabla1.dibujar();
   }
 

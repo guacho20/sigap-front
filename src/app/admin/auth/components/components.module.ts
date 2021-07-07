@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ComponentesModule } from 'ngprime-core';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
@@ -9,7 +11,9 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     ChangePasswordComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule,
+    ComponentesModule
   ],
   exports: [
     ChangePasswordComponent

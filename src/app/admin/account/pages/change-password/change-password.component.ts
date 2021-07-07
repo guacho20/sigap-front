@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService, UtilitarioService, ValidadoresService } from 'ngprime-core';
+declare var jQuery: any;
+declare var $: any;
 
 @Component({
   selector: 'app-change-password',
@@ -12,6 +14,8 @@ export class ChangePasswordComponent implements OnInit {
 
   reglas = [];
   passwordForm: FormGroup;
+
+  pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?![-_*?!@#$/(){}=.,;:]).{8,16}";
 
   constructor(
     private fb: FormBuilder,
@@ -31,7 +35,7 @@ export class ChangePasswordComponent implements OnInit {
   createPasswordForm(): void {
     this.passwordForm = this.fb.group({
       contrasenaActual: ['', Validators.required],
-      nuevaContrasena: ['', Validators.required],
+      nuevaContrasena: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(16), Validators.pattern(this.pattern)]],
       confirmarContrasena: ['', Validators.required],
     }, { validators: this.validadores.passwordsIguales('nuevaContrasena', 'confirmarContrasena') });
   }
@@ -54,6 +58,8 @@ export class ChangePasswordComponent implements OnInit {
     } else if (this.passwordForm.get(campo).hasError('minlength')) {
       const minlength = this.passwordForm.get(campo).errors?.minlength.requiredLength;
       message = `No puede ingresar menos de ${minlength} caracteres`;
+    }else if (this.passwordForm.get(campo).hasError('pattern')) {
+      message = 'La contraseña debe cumplir con la regla establecida en la parte derecha';
     }
     return message;
   }
@@ -71,6 +77,26 @@ export class ChangePasswordComponent implements OnInit {
       this.utilitarioSvc.cerrarLoading();
       this.passwordForm.reset();
     }, (err => { this.utilitarioSvc.cerrarLoading(); }));
+  }
+
+  validate(input) {
+
+    let pattern;
+
+    if ($(input).attr("name") == "password") {
+
+      pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/;
+
+    }
+
+    if (!pattern.test(input.value)) {
+
+      $(input).parent().addClass('was-validated')
+
+      input.value = "";
+
+    }
+
   }
 
 }

@@ -6,9 +6,9 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { AuthService } from 'ngprime-core';
 import { catchError } from 'rxjs/operators';
 import Swal from 'sweetalert2';
+import { AuthService } from 'ngprime-core';
 import { environment } from 'src/environments/environment';
 
 @Injectable()
@@ -52,7 +52,7 @@ export class ServerErrorInterceptor implements HttpInterceptor {
         const status = err.status;
         if (statusText === 'Unknown Error' && errorName === 'HttpErrorResponse' && status === 0) {
         } else if (err.error.caducado === true && status === 401) {
-          this.mensajeSesionCaducado(err.error.mensaje);
+          this.authSvc.mensajeSesionCaducado(err.error.mensaje);
         }else if (status === 401) {
           this.mensajeNoAutorizado(err.error.mensaje);
         }

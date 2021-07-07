@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService, UtilitarioService, ValidadoresService } from 'ngprime-core';
-declare var $: any;
 
 @Component({
   selector: 'app-login',
@@ -12,6 +11,9 @@ declare var $: any;
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  isChangePassword = false;
+  passwordActual = '***********';
+  data:any;
 
   constructor(
     private router: Router,
@@ -66,11 +68,13 @@ export class LoginComponent implements OnInit {
     }
     this.utilitarioSvc.abrirLoading();
     this.authSvc.login(this.loginForm.value).subscribe((res) => {
-      console.log(res);
+      this.passwordActual = this.loginForm.get('password').value;
+      this.data= res;
+      // console.log(res);
       if (res.cambia_clave) {
-        $('#modal-change-password').modal('show');
+        this.data = res;
+        this.isChangePassword= true;
         this.utilitarioSvc.cerrarLoading();
-        return console.log('cambio la contraseña');
       }
       this.router.navigate(['/private/dashboard']);
       this.utilitarioSvc.cerrarLoading();
@@ -78,6 +82,10 @@ export class LoginComponent implements OnInit {
       console.log(err);
       this.utilitarioSvc.cerrarLoading();
     });
+  }
+
+  closeDialogo(event){
+    this.isChangePassword = event;
   }
 
 }

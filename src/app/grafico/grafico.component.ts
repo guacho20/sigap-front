@@ -1,57 +1,137 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { ComboComponent, UtilitarioService } from 'ngprime-core';
 import { Subscription } from 'rxjs';
 import { AppConfig } from './core/interface/appconfig';
 import { AppconfigService } from './core/service/appconfigservice';
+import { GerencialService } from './services/gerencial.service';
 
 
 @Component({
-  selector: 'app-grafico',
-  templateUrl: './grafico.component.html',
-  styleUrls: ['./grafico.component.css']
+    selector: 'app-grafico',
+    templateUrl: './grafico.component.html',
+    styleUrls: ['./grafico.component.css']
 })
-export class GraficoComponent implements OnInit {
-  
-  basicData: any;
-    
+export class GraficoComponent implements OnInit, AfterViewInit {
+
+    @ViewChild('comProyecto', { static: false }) comProyecto: ComboComponent;
+    @ViewChild('comMeta', { static: false }) comMeta: ComboComponent;
+    @ViewChild('comIndicador', { static: false }) comIndicador: ComboComponent;
+
+    basicData: any;
     basicOptions: any;
-
-    multiAxisData: any;
-
-    chartOptions: any;
-
-    multiAxisOptions: any;
-
-    stackedData: any;
-
-    stackedOptions: any;
-    
     subscription: Subscription;
-
     config: AppConfig;
 
-    constructor(private configService: AppconfigService) {}
+    isTipo = 1;
+
+    datos: any;
+    dataGrafico: any;
+
+    constructor(
+        private configService: AppconfigService,
+        private gerencialSvc: GerencialService,
+        private utilitarioSvc: UtilitarioService) {
+
+    }
+
+    async ngAfterViewInit(): Promise<void> {
+        // this.comProyecto.setLectura(true);
+        this.utilitarioSvc.abrirLoading();
+        this.comMeta.setLectura(true);
+        this.comIndicador.setLectura(true);
+        await this.comProyecto.setComboServicio('gerencialpdot/getProyecto');
+        /*await this.comMeta.setComboServicio('gerencialpdot/getPostMeta', { ide_proyecto: -1 });
+        await this.comIndicador.setComboServicio('gerencialpdot/getPostProyectoIndicador', { ide_proyecto: -1, ide_objetivo: -1 });
+        */this.comProyecto.onChange = () => { this.cargarMeta(); };
+        this.comMeta.onChange = () => { this.cargarIndicador(); };
+        this.comIndicador.onChange = () => { this.cargarDetalle(); };
+        this.utilitarioSvc.cerrarLoading();
+    }
+
+    async cargarMeta() {
+        this.comMeta.setLectura(true);
+        this.comIndicador.setLectura(true);
+        this.comMeta.limpiar();
+        this.comIndicador.limpiar();
+        const proyecto = this.comProyecto.getValor();
+        this.utilitarioSvc.abrirLoading();
+        await this.comMeta.setComboServicio('gerencialpdot/getPostMeta', { ide_proyecto: proyecto })
+            .then(res => {
+                this.comMeta.setLectura(false);
+            });
+        await this.gerencialSvc.getDetalleProyecto({ ide_proyecto: proyecto }).subscribe(res => {
+            this.datos = res.datos;
+            this.basicData = res.datosGrafico;
+            this.utilitarioSvc.cerrarLoading();
+        }, (err) => {
+            this.utilitarioSvc.cerrarLoading();
+        })
+    }
+
+    async cargarIndicador() {
+        this.comIndicador.limpiar();
+        const proyecto = this.comProyecto.getValor();
+        const objetivo = this.comMeta.getValor();
+        this.utilitarioSvc.abrirLoading();
+        await this.comIndicador.setComboServicio('gerencialpdot/getPostProyectoIndicador', { ide_proyecto: proyecto, ide_objetivo: objetivo })
+            .then(res => {
+                this.comIndicador.setLectura(false);
+            });
+            await this.gerencialSvc.getDetalleProyecto({ ide_proyecto: proyecto,ide_objetivo: objetivo  }).subscribe(res => {
+                this.datos = res.datos;
+                this.basicData = res.datosGrafico;
+                this.utilitarioSvc.cerrarLoading();
+            }, (err) => {
+                this.utilitarioSvc.cerrarLoading();
+            })
+    }
+
+    async actualizar(){
+        this.comMeta.setLectura(true);
+        this.comIndicador.setLectura(true);
+        this.comMeta.limpiar();
+        this.comProyecto.limpiar();
+        this.comIndicador.limpiar();
+        this.utilitarioSvc.abrirLoading();
+        await this.comProyecto.setComboServicio('gerencialpdot/getProyecto').then(res =>{
+            this.utilitarioSvc.cerrarLoading();
+        });
+    }
+
+    async cargarDetalle(){
+        const proyecto = this.comProyecto.getValor();
+        const objetivo = this.comMeta.getValor();
+        const perspectiva = this.comIndicador.getValor();
+        this.utilitarioSvc.abrirLoading();
+        await this.gerencialSvc.getDetalleProyecto({ ide_proyecto: proyecto,ide_objetivo: objetivo,ide_perspectiva: perspectiva }).subscribe(res => {
+            this.datos = res.datos;
+            this.basicData = res.datosGrafico;
+            this.utilitarioSvc.cerrarLoading();
+        }, (err) => {
+            this.utilitarioSvc.cerrarLoading();
+        })
+    }
+
+    generarLetra() {
+        var letras = ["a", "b", "c", "d", "e", "f", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+        var numero = (Math.random() * 15).toFixed(0);
+        return letras[numero];
+    }
+
+    colorHEX() {
+        var coolor = "";
+        for (var i = 0; i < 6; i++) {
+            coolor = coolor + this.generarLetra();
+        }
+        return "#" + coolor;
+    }
 
     ngOnInit() {
-        this.basicData = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            datasets: [
-                {
-                    label: 'My First dataset',
-                    backgroundColor: '#42A5F5',
-                    data: [65, 59, 80, 81, 56, 55, 40]
-                },
-                {
-                    label: 'My Second dataset',
-                    backgroundColor: '#FFA726',
-                    data: [28, 48, 40, 19, 86, 27, 90]
-                }
-            ]
-        };
 
-        this.multiAxisData = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        this.basicData = this.dataGrafico;/* {
+            labels: ['2018', '2019', '2020', '2021', '2022', '2023'],
             datasets: [{
-                label: 'Dataset 1',
+                label: 'Control PDO',
                 backgroundColor: [
                     '#EC407A',
                     '#AB47BC',
@@ -61,109 +141,12 @@ export class GraficoComponent implements OnInit {
                     '#FFCA28',
                     '#26A69A'
                 ],
-                yAxisID: 'y-axis-1',
-                data: [65, 59, 80, 81, 56, 55, 10]
-            }, {
-                label: 'Dataset 2',
-                backgroundColor: '#78909C',
-                yAxisID: 'y-axis-2',
-                data: [28, 48, 40, 19, 86, 27, 90]
-            }]
-        };
-
-        this.multiAxisOptions = {
-            responsive: true,
-            tooltips: {
-                mode: 'index',
-                intersect: true
-            },
-            scales: {
-                yAxes: [{
-                    type: 'linear',
-                    display: true,
-                    position: 'left',
-                    id: 'y-axis-1',
-                    ticks: {
-                        min: 0,
-                        max: 100
-                    }
-                },
-                {
-                    type: 'linear',
-                    display: true,
-                    position: 'right',
-                    id: 'y-axis-2',
-                    gridLines: {
-                        drawOnChartArea: false
-                    },
-                    ticks: {
-                        min: 0,
-                        max: 100
-                    }
-                }]
+                data: [65, 59, 80, 40, 56, 55]
             }
-        };
+            ]
+        }; */
 
-        this.stackedData = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            datasets: [{
-                type: 'bar',
-                label: 'Dataset 1',
-                backgroundColor: '#42A5F5',
-                data: [
-                    50,
-                    25,
-                    12,
-                    48,
-                    90,
-                    76,
-                    42
-                ]
-            }, {
-                type: 'bar',
-                label: 'Dataset 2',
-                backgroundColor: '#66BB6A',
-                data: [
-                    21,
-                    84,
-                    24,
-                    75,
-                    37,
-                    65,
-                    34
-                ]
-            }, {
-                type: 'bar',
-                label: 'Dataset 3',
-                backgroundColor: '#FFA726',
-                data: [
-                    41,
-                    52,
-                    24,
-                    74,
-                    23,
-                    21,
-                    32
-                ]
-            }]
-        };
 
-        this.stackedOptions = {
-            tooltips: {
-                mode: 'index',
-                intersect: false
-            },
-            responsive: true,
-            scales: {
-                xAxes: [{
-                    stacked: true,
-                }],
-                yAxes: [{
-                    stacked: true
-                }]
-            }
-        };
-        
         this.config = this.configService.config;
         this.updateChartOptions();
         this.subscription = this.configService.configUpdate$.subscribe(config => {
@@ -173,7 +156,7 @@ export class GraficoComponent implements OnInit {
     }
 
     updateChartOptions() {
-        if (this.config.dark) 
+        if (this.config.dark)
             this.applyDarkTheme();
         else
             this.applyLightTheme();
@@ -189,7 +172,7 @@ export class GraficoComponent implements OnInit {
             scales: {
                 xAxes: [{
                     ticks: {
-                        fontColor: '#ebedef'
+                        fontColor: '#ebedef',
                     },
                     gridLines: {
                         color: 'rgba(255,255,255,0.2)'
@@ -206,54 +189,8 @@ export class GraficoComponent implements OnInit {
             }
         };
 
-        this.stackedOptions.scales.xAxes[0].ticks = {
-            fontColor: '#ebedef'
-        };
-        this.stackedOptions.scales.xAxes[0].gridLines = {
-            color: 'rgba(255,255,255,0.2)'
-        };
-        this.stackedOptions.scales.yAxes[0].ticks = {
-            fontColor: '#ebedef'
-        };
-        this.stackedOptions.scales.yAxes[0].gridLines = {
-            color: 'rgba(255,255,255,0.2)'
-        };
-        this.stackedOptions.legend = {
-            labels:  {
-                fontColor: '#ebedef'
-            }
-        };
-        this.stackedOptions = {...this.stackedOptions};
-
-        this.multiAxisOptions.scales.xAxes = [{
-                ticks: {
-                    fontColor: '#ebedef'
-                },
-                gridLines: {
-                    color: 'rgba(255,255,255,0.2)'
-                }
-            }
-        ];
-        this.multiAxisOptions.scales.yAxes[0].ticks = {
-            fontColor: '#ebedef'
-        };
-        this.multiAxisOptions.scales.yAxes[0].gridLines = {
-            color: 'rgba(255,255,255,0.2)'
-        };
-        this.multiAxisOptions.scales.yAxes[1].ticks = {
-            fontColor: '#ebedef'
-        };
-        this.multiAxisOptions.scales.yAxes[1].gridLines = {
-            color: 'rgba(255,255,255,0.2)'
-        };
-        this.multiAxisOptions.legend = {
-            labels:  {
-                fontColor: '#ebedef'
-            }
-        };
-        this.multiAxisOptions = {...this.multiAxisOptions};
     }
-    
+
     applyLightTheme() {
         this.basicOptions = {
             legend: {
@@ -274,53 +211,26 @@ export class GraficoComponent implements OnInit {
                 }]
             }
         };
+    }
 
-        this.stackedOptions.scales.xAxes[0].ticks = {
-            fontColor: '#495057'
-        };
-        this.stackedOptions.scales.xAxes[0].gridLines = {
-            color: '#ebedef'
-        };
-        this.stackedOptions.scales.yAxes[0].ticks = {
-            fontColor: '#495057'
-        };
-        this.stackedOptions.scales.yAxes[0].gridLines = {
-            color: '#ebedef'
-        };
-        this.stackedOptions.legend = {
-            labels:  {
-                fontColor: '#495057'
-            }
-        };
-        this.stackedOptions = {...this.stackedOptions};
+    exportExcel() {
+        import("xlsx").then(xlsx => {
+            const worksheet = xlsx.utils.json_to_sheet(this.datos);
+            const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+            const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+            this.saveAsExcelFile(excelBuffer, "pdot");
+        });
+    }
 
-        this.multiAxisOptions.scales.xAxes = [{
-                ticks: {
-                    fontColor: '#495057'
-                },
-                gridLines: {
-                    color: '#ebedef'
-                }
-            }
-        ];
-        this.multiAxisOptions.scales.yAxes[0].ticks = {
-            fontColor: '#495057'
-        };
-        this.multiAxisOptions.scales.yAxes[0].gridLines = {
-            color: '#ebedef'
-        };
-        this.multiAxisOptions.scales.yAxes[1].ticks = {
-            fontColor: '#495057'
-        };
-        this.multiAxisOptions.scales.yAxes[1].gridLines = {
-            color: '#ebedef'
-        };
-        this.multiAxisOptions.legend = {
-            labels:  {
-                fontColor: '#495057'
-            }
-        };
-        this.multiAxisOptions = {...this.multiAxisOptions};
+    saveAsExcelFile(buffer: any, fileName: string): void {
+        import("file-saver").then(FileSaver => {
+            let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+            let EXCEL_EXTENSION = '.xlsx';
+            const data: Blob = new Blob([buffer], {
+                type: EXCEL_TYPE
+            });
+            FileSaver.default.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+        });
     }
 
 }

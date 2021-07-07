@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService, UtilitarioService } from 'ngprime-core';
+import { Usuario } from 'ngprime-core/lib/clases/usuario';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,6 +14,7 @@ export class DashboardComponent implements OnInit {
   pantallas: [];
   userAgent: any = null;
   usuario = [];
+  user: Usuario;
   sistemaOperativo: any = null;
   dispositivo: string;
   ip: string;
@@ -21,8 +23,10 @@ export class DashboardComponent implements OnInit {
     private authSvc: AuthService,
     private utilitarioSvc: UtilitarioService
   ) {
+    authSvc.userLogueado();
     this.userAgent = this.utilitarioSvc.getUserAgent();
     this.usuario = authSvc.getUserData();
+    this.user = authSvc.usuario;
     this.dispositivo = this.utilitarioSvc.getPlataforma();
     this.sistemaOperativo = this.utilitarioSvc.getSistemaOperativo();
   }

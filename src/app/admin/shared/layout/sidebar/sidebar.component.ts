@@ -9,7 +9,7 @@ import { AuthService, UtilitarioService } from 'ngprime-core';
 export class SidebarComponent implements OnInit {
 
   menuItems: any[];
-
+ 
   constructor(
     private authSvc: AuthService,
     private utilitarioSvc: UtilitarioService) { }
@@ -26,7 +26,12 @@ export class SidebarComponent implements OnInit {
     }
   }
 
-  onMenu(opcion): void{
+  onClick2(opcion): void {
+    this.authSvc.isMenu = true;
+    this.authSvc.setRuta(opcion);
+  }
+
+  onMenu(opcion): void {
     this.authSvc.isMenu = true;
     this.authSvc.setRuta(opcion);
   }

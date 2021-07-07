@@ -14,19 +14,21 @@
             </div>
             <div class="card-body">
                 <ngp-tabla #tabTabla1></ngp-tabla>
+                <hr>
                 <div class="row">
                     <div class="col-9">
                         <ngp-tabla #tabTabla2></ngp-tabla>
                     </div>
                     <div class="col-3">
                         <p class="lead bg_info">Semaforo:</p>
-                        <i *ngIf="semaforo==='verde'" class="fa fa-circle fa-5x text-green"></i>
-                        <i *ngIf="semaforo==='amarillo'" class="fa fa-circle fa-8x text-orange"></i>
-                        <i *ngIf="semaforo==='rojo'" class="fa fa-circle fa-8x text-red"></i>
-                        <i *ngIf="!semaforo" class="fa fa-circle fa-8x text-blue"></i>
+                        <i *ngIf="semaforo==='verde'" class="fa fa-circle fa-5x text-success"></i>
+                        <i *ngIf="semaforo==='amarillo'" class="fa fa-circle fa-5x text-warning"></i>
+                        <i *ngIf="semaforo==='rojo'" class="fa fa-circle fa-5x text-danger"></i>
+                        <i *ngIf="!semaforo" class="fa fa-circle fa-5x text-blue"></i>
                         <h6 class="mt-2"><strong>Total: </strong> {{total}}</h6>
                     </div>
                 </div>
+                <hr>
                 <div class="row">
                     <div class="col-md-12">
                         <ngp-tabla #tabTabla3></ngp-tabla>

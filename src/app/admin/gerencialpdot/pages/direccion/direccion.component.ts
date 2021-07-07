@@ -17,6 +17,12 @@ export class DireccionComponent extends BarMenu implements OnInit, AfterViewInit
 
   async ngAfterViewInit(): Promise<void> {
     await this.tabTabla1.setTabla('ge_direccion', 'ide_direccion', 1);
+    this.tabTabla1.setTitulo('REGISTRO DE DIRECCIONES');
+    this.tabTabla1.getColumna('ide_direccion').setNombreVisual('código');
+    this.tabTabla1.getColumna('detalle_direccion').setNombreVisual('detalle');
+    this.tabTabla1.getColumna('abreviatura_direccion').setNombreVisual('abreviatura');
+    this.tabTabla1.getColumna('ide_direccion').setLongitud(10);
+    this.tabTabla1.getColumna('abreviatura_direccion').setLongitud(15);
     this.tabTabla1.dibujar();
   }
 

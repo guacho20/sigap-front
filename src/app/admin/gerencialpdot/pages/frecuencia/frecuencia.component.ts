@@ -17,6 +17,10 @@ export class FrecuenciaComponent extends BarMenu implements OnInit, AfterViewIni
 
   async ngAfterViewInit(): Promise<void> {
     await this.tabTabla1.setTabla('ge_frecuencia', 'ide_frecuencia', 1);
+    this.tabTabla1.setTitulo('REGISTRO DE FRECUENCIA');
+    this.tabTabla1.getColumna('ide_frecuencia').setNombreVisual('código');
+    this.tabTabla1.getColumna('detalle_frecuencia').setNombreVisual('FRECUENCIA');
+    this.tabTabla1.getColumna('ide_frecuencia').setLongitud(10);
     this.tabTabla1.dibujar();
   }
 

@@ -41,10 +41,28 @@
     padding: 0px !important;
 }
 
-.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
-    /* background: #28B463; */
-}
-
 .p-dropdown .p-dropdown-panel {
     max-width: 600px !important;
+}
+
+.p-dropdown-panel .p-dropdown-items .p-dropdown-empty-message {
+    padding-left: 0.5rem !important;
+    font-size: 0.8rem !important;
+    margin: 0rem !important;
+}
+
+.p-dropdown-panel {
+    max-width: 400px !important;
+}
+
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+    padding: 0.1rem 0.1rem !important;
+    font-size: 0.8rem !important;
+}
+
+.p-dropdown-panel .p-dropdown-header .p-dropdown-filter {
+    height: 25px !important;
+    padding: 0% !important;
+    margin: 0% !important;
+    font-size: 0.8rem !important;
 }
