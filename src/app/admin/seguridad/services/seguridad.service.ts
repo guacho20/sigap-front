@@ -31,4 +31,16 @@ export class SeguridadService {
     );
   }
 
+  resetPassword(body){
+    return this.http.post<any>(`${this.api}/seguridad/resetPassword`, body).pipe(
+      map(res => {
+        return res;
+      }),
+      catchError(err => {
+        this.utilitarioSvc.agregarMensajeErrorEndpoint(err);
+        return throwError(err);
+      })
+    );
+  }
+
 }

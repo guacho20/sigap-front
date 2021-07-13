@@ -100,4 +100,30 @@ export class UsuariosComponent extends BarMenu implements OnInit, AfterViewInit 
     }
   }
 
+  resetPassword(){
+    if (this.utilitarioSvc.isUndefined(this.tabTabla1.seleccionada)) {
+      const nombreUsuario = this.tabTabla1.getValor('nombre_segusu');
+      const mensaje = 'Está seguro de que desea resetear la contraseña del usuario <strong> ' + nombreUsuario + ' </strong>? <br> <strong>Nota: </strong> La contraseña nueva será el nombre del usuario.';
+      this.utilitarioSvc.confirmar(mensaje, () => this.confirmarResetPassword());
+    }
+    else {
+      this.utilitarioSvc.agregarMensajeAdvertencia('No se encuentra seleccionado ningun registro');
+    }
+  }
+
+  confirmarResetPassword(){
+    this.utilitarioSvc.abrirLoading();
+    const usuario = this.tabTabla1.getValor('username_segusu');
+    const ideUsuario = this.tabTabla1.getValor('ide_segusu');
+    const body= {
+      uid_usuario: ideUsuario, nuevaContrasena: usuario
+    }
+    this.seguridadSvc.resetPassword(body).subscribe( res =>{
+      this.utilitarioSvc.agregarMensajeExito('Contraseña reseteada exitosamente');
+      this.utilitarioSvc.cerrarLoading();
+    }, (err) => {
+      this.utilitarioSvc.cerrarLoading();
+    });
+  }
+
 }

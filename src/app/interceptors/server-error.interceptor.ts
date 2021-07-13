@@ -51,6 +51,7 @@ export class ServerErrorInterceptor implements HttpInterceptor {
         const errorName = err.name;
         const status = err.status;
         if (statusText === 'Unknown Error' && errorName === 'HttpErrorResponse' && status === 0) {
+          this.mensajeServidor('No se puede conectar con el servidor, contactese con el administrador o técnico.');
         } else if (err.error.caducado === true && status === 401) {
           this.authSvc.mensajeSesionCaducado(err.error.mensaje);
         }else if (status === 401) {
@@ -82,6 +83,18 @@ export class ServerErrorInterceptor implements HttpInterceptor {
     Swal.fire({
       imageUrl: 'assets/img/401.jpg',
       title: 'No autorizado',
+      text: mensaje,
+      allowOutsideClick: true,
+      confirmButtonText: 'Aceptar',
+      heightAuto: false,
+      backdrop: true
+    });
+  }
+
+  private mensajeServidor(mensaje: string): void{
+    Swal.fire({
+      imageUrl: 'assets/img/500.jpg',
+      title: 'Error de conexión',
       text: mensaje,
       allowOutsideClick: true,
       confirmButtonText: 'Aceptar',

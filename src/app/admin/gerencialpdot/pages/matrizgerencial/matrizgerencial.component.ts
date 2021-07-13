@@ -33,6 +33,7 @@ export class MatrizgerencialComponent extends BarMenu implements OnInit, AfterVi
     this.tabTabla1.getColumna('ide_proyecto').setLongitud(25);
     this.tabTabla1.getColumna('ide_objetivo').setLongitud(10);
     this.tabTabla1.getColumna('detalle_objetivo').setLongitud(25);
+    this.tabTabla1.onPageChange= () => {this.actualizaSemaforo;};
     this.tabTabla1.setRows(5);
     this.tabTabla1.setLectura(true);
     this.tabTabla1.dibujar();
@@ -52,13 +53,14 @@ export class MatrizgerencialComponent extends BarMenu implements OnInit, AfterVi
     this.tabTabla2.getColumna('ide_frecuencia').setNombreVisual('frecuencia');
     this.tabTabla2.getColumna('abs_rela').setNombreVisual('abs rela');
     this.tabTabla2.getColumna('crece_decre').setNombreVisual('crece/decrece');
-    this.tabTabla2.getColumna('meta').setNombreVisual('');
+    this.tabTabla2.getColumna('meta').setNombreVisual('META');
     this.tabTabla2.getColumna('linea_base').setNombreVisual('linea base');
     this.tabTabla2.getColumna('detalle_linea_base').setNombreVisual('detalle linea base');
     this.tabTabla2.getColumna('detalle_meta').setNombreVisual('detalle meta');
     this.tabTabla2.getColumna('detalle_forma_control').setNombreVisual('detalle forma control');
     this.tabTabla2.getColumna('ide_matriz').setNombreVisual('código');
     this.tabTabla2.setTipoFormulario();
+    this.tabTabla2.onPageChange= () => {this.actualizaSemaforo;};
     this.tabTabla2.dibujar();
 
     await this.tabTabla3.setTabla('ge_variacion', 'ide_variacion', 3);
@@ -69,20 +71,25 @@ export class MatrizgerencialComponent extends BarMenu implements OnInit, AfterVi
     this.tabTabla3.getColumna('fecha_variacion').setNombreVisual('fecha variación');
     this.tabTabla3.getColumna('ide_variacion').setLongitud(10);
     this.tabTabla3.getColumna('fecha_variacion').setLongitud(10);
+    this.tabTabla3.onDibujar = () => {this.actualizaSemaforo();}
     this.tabTabla3.setRows(5);
     this.tabTabla3.dibujar();
+   
   }
-
+  
   ngOnInit(): void {
   }
 
   actualizaSemaforo(): string {
     this.total = 0;
-    const valor = this.tabTabla3.getSumaColumna('valor_variacion');
+    let valor = 0;
+    this.tabTabla3.datos.forEach(async element => {
+      this.total = this.total+ Number(element['valor_variacion']);
+    });
     const meta = this.tabTabla2.getValor('meta');
     const lineabase = this.tabTabla2.getValor('linea_base');
-    this.total = valor;
-    // console.log(valor, meta, lineabase);
+     valor = this.total;
+    console.log(valor, meta, lineabase);
     if (valor < lineabase && valor < meta) { // es linea roja
       return this.semaforo = 'rojo';
     }
@@ -124,11 +131,12 @@ export class MatrizgerencialComponent extends BarMenu implements OnInit, AfterVi
 
   validarProyectoPerspectivaUnico(mensaje: string): Promise<boolean> {
     const sql = `select ide_matriz from ge_matriz_frecuencia where ide_perspectiva=$1 and ide_objetivo=$2`;
-    const objetivo = this.tabTabla1.getValorSeleccionado();
+    const objetivo = this.tabTabla1.getValor('ide_objetivo');
     const perspectiva = this.tabTabla2.getValor('ide_perspectiva');
+    // console.log(objetivo, perspectiva);
     return new Promise(resolve => {
       this.utilitarioSvc.getConsultaGenerica(sql, [objetivo, perspectiva]).subscribe(res => {
-        if (res.datos) {
+        if (res.datos.length > 0) {
           this.utilitarioSvc.agregarMensajeAdvertencia(mensaje);
           resolve(false);
         }
