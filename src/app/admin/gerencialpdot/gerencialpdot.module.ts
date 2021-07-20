@@ -12,6 +12,7 @@ import { ProyectoComponent } from './pages/proyecto/proyecto.component';
 import { DireccionComponent } from './pages/direccion/direccion.component';
 import { ComponenteComponent } from './pages/componente/componente.component';
 import { ObjetivosComponent } from './pages/objetivos/objetivos.component';
+import { ComponentsModule } from './components/components.module';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { ObjetivosComponent } from './pages/objetivos/objetivos.component';
     RouterModule,
     GerencialpdotRoutingModule,
     ComponentesModule,
-    SharedModule
+    SharedModule,
+    ComponentsModule
   ]
 })
 export class GerencialpdotModule { }

@@ -29,7 +29,7 @@
         "file-saver": "^2.0.5",
         "moment": "^2.29.1",
         "ng2-date-picker": "^11.0.0",
-        "ngprime-core": "^0.2.1",
+        "ngprime-core": "^0.2.2",
         "ngx-device-detector": "^2.1.1",
         "ngx-progressbar": "^6.1.1",
         "ngx-spinner": "^11.0.1",

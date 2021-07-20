@@ -24,17 +24,16 @@ export class ObjetivosComponent extends BarMenu implements OnInit, AfterViewInit
     this.tabTabla1.getColumna('detalle_objetivo').setNombreVisual('Meta');
     this.tabTabla1.getColumna('ide_objetivo').setLongitud(10);
     this.tabTabla1.getColumna('ide_proyecto').setLongitud(30);
+    this.tabTabla1.agregarRelacion(this.tabTabla2);
     this.tabTabla1.dibujar();
     
     await this.tabTabla2.setTabla('ge_objetivo_direccion', 'ide_objdire', 2);
     this.tabTabla2.setTitulo('DIRECCIONES RESPONSABLE');
     this.tabTabla2.getColumna('ide_objdire').setLongitud(10);
-    this.tabTabla2.getColumna('ide_objetivo').setCombo('ge_objetivo', 'ide_objetivo', 'detalle_objetivo');
     this.tabTabla2.getColumna('ide_direccion').setCombo('ge_direccion', 'ide_direccion', 'detalle_direccion');
     this.tabTabla2.getColumna('ide_objetivo').setLongitud(30);
     this.tabTabla2.getColumna('ide_direccion').setLongitud(30);
     this.tabTabla2.getColumna('ide_objdire').setNombreVisual('código');
-    this.tabTabla2.getColumna('ide_objetivo').setNombreVisual('objetivo');
     this.tabTabla2.getColumna('ide_direccion').setNombreVisual('direccion');
     
     this.tabTabla2.dibujar();

@@ -68,7 +68,7 @@ export class ChangePasswordComponent implements OnInit {
       Object.values(this.passwordForm.controls).forEach(control => {
         control.markAsTouched();
       });
-      console.log(this.passwordForm);
+      // console.log(this.passwordForm);
       return;
     }
     this.utilitarioSvc.abrirLoading();

@@ -9,9 +9,10 @@
 </app-breadcrumbs>
 <div class="row">
     <div class="col-12">
-        <div class="card card-hover">
-            <div class="card-header bg-info">
-            </div>
+        <div class="box box-info">
+            <ngp-barra>
+                <ngp-boton (click)="subirArchivo()" icono="pi pi-upload" texto="Subir Matriz"></ngp-boton>
+            </ngp-barra>
             <div class="card-body">
                 <ngp-tabla #tabTabla1></ngp-tabla>
                 <hr>
@@ -19,13 +20,16 @@
                     <div class="col-9">
                         <ngp-tabla #tabTabla2></ngp-tabla>
                     </div>
-                    <div class="col-3">
-                        <p class="lead bg_info">AVANCE PROYECTO :</p>
-                        <i *ngIf="semaforo==='verde'" class="fa fa-circle fa-5x text-success"></i>
-                        <i *ngIf="semaforo==='amarillo'" class="fa fa-circle fa-5x text-warning"></i>
-                        <i *ngIf="semaforo==='rojo'" class="fa fa-circle fa-5x text-danger"></i>
-                        <i *ngIf="!semaforo" class="fa fa-circle fa-5x text-blue"></i>
-                        <h6 class="mt-2"><strong>TOTAL (%): </strong> {{total}}</h6>
+                    <div class="col-3 centrar">
+                        <h4><strong>AVANCE PROYECTO :</strong> </h4>
+                        <p-skeleton class="col-3 centrar" *ngIf="!isLoading" shape="circle" size="4rem"></p-skeleton>
+                        <div *ngIf="isLoading">
+                            <i *ngIf="semaforo==='verde'" class="fa fa-circle fa-5x text-success"></i>
+                            <i *ngIf="semaforo==='amarillo'" class="fa fa-circle fa-5x text-warning"></i>
+                            <i *ngIf="semaforo==='rojo'" class="fa fa-circle fa-5x text-danger"></i>
+                            <i *ngIf="!semaforo" class="fa fa-circle fa-5x text-blue"></i>
+                        </div>
+                        <h5 class="mt-2"><strong>TOTAL (%): </strong> {{total}}</h5>
                     </div>
                 </div>
                 <hr>
@@ -38,3 +42,4 @@
         </div>
     </div>
 </div>
+<app-upload-archivo [(display)]="isOpenModal" (close)="closeDialogo($event)" (isSubido)="actualizarTabla($event)"></app-upload-archivo>

@@ -66,3 +66,69 @@
     margin: 0% !important;
     font-size: 0.8rem !important;
 }
+
+.p-fluid .p-fileupload .p-button {
+    height: 30px;
+    font-size: 0.85rem;
+    border: 0;
+}
+
+.p-dialog .p-dialog-header {
+    background: #001f3f !important;
+    color: #fff !important;
+    padding: 0.5rem !important;
+}
+
+.p-dialog .p-dialog-content {
+    padding: 0.5rem !important;
+}
+
+.p-fileupload .p-fileupload-buttonbar {
+    padding: 0.5rem !important;
+}
+
+.p-fileupload .p-fileupload-buttonbar .p-button {
+    margin-right: 0.5rem !important;
+    height: 30px !important;
+    font-size: 0.8rem !important;
+}
+
+.p-fileupload .p-fileupload-content {
+    padding: 0.5rem !important;
+    font-size: 0.8rem !important;
+}
+
+.p-fileupload .p-fileupload-row>div {
+    padding: 0.5rem !important;
+}
+
+.p-fileupload-row>div {
+    flex: none !important;
+    width: 25% !important;
+}
+
+.p-button .p-button-icon-left {
+    font-size: 0.8rem !important;
+}
+
+.p-button.p-button-icon-only {
+    padding: 0rem !important;
+    height: 30px !important;
+}
+
+.p-message {
+    margin: 0.2rem !important;
+}
+
+.p-message .p-message-wrapper {
+    padding: 0.5rem !important;
+    font-size: 0.8rem !important;
+}
+
+.p-message .p-message-summary {
+    font-size: 0.8rem !important;
+}
+
+.col-3.centrar {
+    text-align: center;
+}

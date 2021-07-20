@@ -28,6 +28,7 @@ export class OpcionesComponent extends BarMenu implements OnInit, AfterViewInit 
     this.tabTabla1.getColumna('ruta_segopc').setNombreVisual('ruta');
     this.tabTabla1.getColumna('icono_segopc').setNombreVisual('icono');
     this.tabTabla1.getColumna('auditoria_segopc').setNombreVisual('auditoria');
+    this.tabTabla1.getColumna('auditoria_segopc').setVisible(false);
     this.tabTabla1.getColumna('manual_segopc').setVisible(false);
     this.tabTabla1.agregarArbol(this.arbArbol);
     this.tabTabla1.dibujar();

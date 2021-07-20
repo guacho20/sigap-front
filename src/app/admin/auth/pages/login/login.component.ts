@@ -79,7 +79,7 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/private/dashboard']);
       this.utilitarioSvc.cerrarLoading();
     }, (err) => {
-      console.log(err);
+      // console.log(err);
       this.utilitarioSvc.cerrarLoading();
     });
   }

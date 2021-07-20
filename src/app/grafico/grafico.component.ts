@@ -77,33 +77,35 @@ export class GraficoComponent implements OnInit, AfterViewInit {
             .then(res => {
                 this.comIndicador.setLectura(false);
             });
-            await this.gerencialSvc.getDetalleProyecto({ ide_proyecto: proyecto,ide_objetivo: objetivo  }).subscribe(res => {
-                this.datos = res.datos;
-                this.basicData = res.datosGrafico;
-                this.utilitarioSvc.cerrarLoading();
-            }, (err) => {
-                this.utilitarioSvc.cerrarLoading();
-            })
+        await this.gerencialSvc.getDetalleProyecto({ ide_proyecto: proyecto, ide_objetivo: objetivo }).subscribe(res => {
+            this.datos = res.datos;
+            this.basicData = res.datosGrafico;
+            this.utilitarioSvc.cerrarLoading();
+        }, (err) => {
+            this.utilitarioSvc.cerrarLoading();
+        })
     }
 
-    async actualizar(){
+    async actualizar() {
         this.comMeta.setLectura(true);
         this.comIndicador.setLectura(true);
         this.comMeta.limpiar();
         this.comProyecto.limpiar();
         this.comIndicador.limpiar();
+        this.datos = [];
+        this.basicData = []
         this.utilitarioSvc.abrirLoading();
-        await this.comProyecto.setComboServicio('gerencialpdot/getProyecto').then(res =>{
+        await this.comProyecto.setComboServicio('gerencialpdot/getProyecto').then(res => {
             this.utilitarioSvc.cerrarLoading();
         });
     }
 
-    async cargarDetalle(){
+    async cargarDetalle() {
         const proyecto = this.comProyecto.getValor();
         const objetivo = this.comMeta.getValor();
         const perspectiva = this.comIndicador.getValor();
         this.utilitarioSvc.abrirLoading();
-        await this.gerencialSvc.getDetalleProyecto({ ide_proyecto: proyecto,ide_objetivo: objetivo,ide_perspectiva: perspectiva }).subscribe(res => {
+        await this.gerencialSvc.getDetalleProyecto({ ide_proyecto: proyecto, ide_objetivo: objetivo, ide_perspectiva: perspectiva }).subscribe(res => {
             this.datos = res.datos;
             this.basicData = res.datosGrafico;
             this.utilitarioSvc.cerrarLoading();

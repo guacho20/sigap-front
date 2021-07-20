@@ -26,6 +26,7 @@ export class PermisosComponent extends BarMenu implements OnInit, AfterViewInit 
     this.tabTabla1.getColumna('descripcion_segper').setNombreVisual('descripción');
     this.tabTabla1.getColumna('activo_segper').setNombreVisual('activo');
     this.tabTabla1.getColumna('perm_util_segper').setNombreVisual('perm util');
+    this.tabTabla1.setRows(5);
     this.tabTabla1.dibujar();
 
     await this.tabTabla2.setTabla('seg_perfil_opcion', 'ide_sepeop', 2);

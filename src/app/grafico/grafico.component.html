@@ -41,7 +41,7 @@
                                             <option value="3">Polar Area</option>
                                             <option value="4">Radar</option>
                                         </select>
-                                        <h3><strong>Grafico estadistico</strong></h3>
+                                        <h3><strong>Gráfico estadístico</strong></h3>
                                         <p-chart *ngIf="isTipo==1" height="255px" type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
                                         <p-chart *ngIf="isTipo==2" type="doughnut" [data]="basicData"></p-chart>
                                         <p-chart *ngIf="isTipo==3" type="polarArea" [data]="basicData"></p-chart>
@@ -57,13 +57,15 @@
                                                 <tr class="bg-dark" style="color: #fff;">
                                                     <th>Proyecto</th>
                                                     <th>Meta</th>
-                                                    <th>Perspectiva</th>
-                                                    <th>Suma</th>
+                                                    <th>Abreviatura</th>
+                                                    <th>Indicador</th>
+                                                    <th>Avance</th>
                                                     <th>Año</th>
                                                 </tr>
                                                 <tr *ngFor="let item of datos">
                                                     <td>{{item.detalle_proyecto}}</td>
                                                     <td>{{item.detalle_meta}}</td>
+                                                    <td>{{item.abreviatura_ystmen}}</td>
                                                     <td>{{item.detalle_perspectiva}}</td>
                                                     <td class="text-right">{{item.suma_porce}}</td>
                                                     <td>{{item.anio}}</td>
