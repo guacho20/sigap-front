@@ -23,6 +23,7 @@ export class ResponsableProyectoComponent extends BarMenu implements OnInit {
     this.tabTabla1.getColumna('ide_segusu').setNombreVisual('USUARIo');
     this.tabTabla1.getColumna('ide_segusu').setRequerido(true);
     this.tabTabla1.getColumna('nombre_gerepo').setRequerido(true);
+    this.tabTabla1.getColumna('ide_segusu').setUnico(true);
     this.tabTabla1.getColumna('ide_segusu').setComentario('Usuario con el que accede al sistema el responsable');
     this.tabTabla1.getColumna('ide_segusu').setCombo('seg_usuario', 'ide_segusu', `username_segusu  ||' - '|| nombre_segusu`);
     this.tabTabla1.getColumna('ide_direccion').setCombo('ge_direccion', 'ide_direccion', 'detalle_direccion');
@@ -69,14 +70,14 @@ export class ResponsableProyectoComponent extends BarMenu implements OnInit {
   }
   async guardar(): Promise<void> {
     if (await this.tabTabla1.isGuardar()) {
-      // console.log('entre al guardar');
       if (await this.unicoUsuarioResponsable('Restricción única, ya existe un registro con el usuario seleccionado')) {
         if (await this.tabTabla2.isGuardar()) {
-          if (await this.unicoObjetivoResponsable('Restricción única, ya existe un registro del responsable con el objetivo del proyecto seleccionado')) {
+          if(await this.unicoObjetivoResponsable('Restricción única, ya existe un registro del responsable con el objetivo del proyecto seleccionado')){
             await this.utilitarioSvc.guardarPantalla(this.tabTabla1, this.tabTabla2);
           }
         }
       }
+     
     }
   }
   eliminar(): void {
@@ -88,10 +89,13 @@ export class ResponsableProyectoComponent extends BarMenu implements OnInit {
   }
 
   unicoUsuarioResponsable(mensaje: string): Promise<boolean> {
-    const sql = `	select ide_segusu from ge_responsable where ide_segusu = $1 `;
+    const sql = `	select ide_segusu from ge_responsable where ide_segusu = $1 and not ide_responsable=$2`;
     const usuario = this.tabTabla1.getValor('ide_segusu');
+    const responsable = this.tabTabla1.getValor('ide_responsable');
+    // console.log('usuario >>> ', usuario)
     return new Promise(resolve => {
-      this.utilitarioSvc.getConsultaGenerica(sql, [usuario]).subscribe(res => {
+      this.utilitarioSvc.getConsultaGenerica(sql, [usuario, responsable]).subscribe(res => {
+        console.log(res);
         if (res.datos.length > 0) {
           this.utilitarioSvc.agregarMensajeAdvertencia(mensaje);
           resolve(false);
@@ -106,12 +110,13 @@ export class ResponsableProyectoComponent extends BarMenu implements OnInit {
   }
 
   unicoObjetivoResponsable(mensaje: string): Promise<boolean> {
-    const sql = `	select ide_responsable from ge_objetivo_responsable where ide_objetivo=$1 and ide_responsable=$2`;
+    const sql = `	select ide_responsable from ge_objetivo_responsable where ide_objetivo=$1 and ide_responsable=$2 and not ide_objetivo_respo=$3`;
     const responsable = this.tabTabla1.getValor('ide_responsable');
     const objetivo = this.tabTabla2.getValor('ide_objetivo');
+    const pk = this.tabTabla2.getValor('ide_objetivo_respo');
     // console.log(objetivo, perspectiva);
     return new Promise(resolve => {
-      this.utilitarioSvc.getConsultaGenerica(sql, [objetivo, responsable]).subscribe(res => {
+      this.utilitarioSvc.getConsultaGenerica(sql, [objetivo, responsable, pk]).subscribe(res => {
         if (res.datos.length > 0) {
           this.utilitarioSvc.agregarMensajeAdvertencia(mensaje);
           resolve(false);

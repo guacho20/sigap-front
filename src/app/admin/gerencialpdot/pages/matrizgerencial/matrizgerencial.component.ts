@@ -156,12 +156,13 @@ export class MatrizgerencialComponent extends BarMenu implements OnInit, AfterVi
   }
 
   validarProyectoPerspectivaUnico(mensaje: string): Promise<boolean> {
-    const sql = `select ide_matriz from ge_matriz_frecuencia where ide_perspectiva=$1 and ide_objetivo=$2`;
+    const sql = `select ide_matriz from ge_matriz_frecuencia where ide_perspectiva=$1 and ide_objetivo=$2 and not ide_matriz=$3`;
     const objetivo = this.tabTabla1.getValor('ide_objetivo');
     const perspectiva = this.tabTabla2.getValor('ide_perspectiva');
+    const pk = this.tabTabla2.getValor('ide_matriz');
     // console.log(objetivo, perspectiva);
     return new Promise(resolve => {
-      this.utilitarioSvc.getConsultaGenerica(sql, [objetivo, perspectiva]).subscribe(res => {
+      this.utilitarioSvc.getConsultaGenerica(sql, [objetivo, perspectiva, pk]).subscribe(res => {
         if (res.datos.length > 0) {
           this.utilitarioSvc.agregarMensajeAdvertencia(mensaje);
           resolve(false);
