@@ -3,6 +3,8 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { UtilitarioService } from 'ngprime-core';
 import { NgProgress, NgProgressRef } from 'ngx-progressbar';
+import { map, catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -155,6 +157,51 @@ export class GerencialpdotService {
         reject(err);
       })
     });
+  }
+
+  async verificoUsuarioResponsable() {
+    const ide_segsuc = localStorage.getItem('ide_segusu') || -1;
+    const sql = 'select ide_responsable from ge_responsable where ide_segusu=$1';
+    // console.log(ide_segsuc);
+    return new Promise(async (resolve, reject) => {
+      await this.utilitarioSvc.getConsultaGenerica(sql, [ide_segsuc]).subscribe( res => {
+        if(res.datos.length > 0){
+          resolve(true);
+        }else{
+          resolve(false);
+        }
+      });
+    })
+  }
+
+  permisos(objetivo) {
+    const ide_segsuc = localStorage.getItem('ide_segusu') || -1;
+    return new Promise(async (resolve, reject) => {
+      const sql = `select registra_proyecto, registra_variacion 
+      from ge_objetivo_responsable a, ge_responsable b 
+      where  a.ide_responsable=b.ide_responsable and ide_objetivo=$1 and ide_segusu=$2`;
+      await this.utilitarioSvc.getConsultaGenerica(sql, [objetivo, ide_segsuc]).subscribe(async project => {
+        if (project.datos.length > 0) {
+          resolve(project.datos);
+        }
+      }, (err) => {
+        reject(err);
+      })
+    });
+  }
+
+
+  getReporte() {
+    const body = {};
+    return this.http.post<any>(`${this.api}/gerencialpdot/getPrintReporte`, body).pipe(
+      map(res => {
+        return res;
+      }),
+      catchError(err => {
+        this.utilitarioSvc.agregarMensajeErrorEndpoint(err);
+        return throwError(err);
+      })
+    );
   }
 
 }

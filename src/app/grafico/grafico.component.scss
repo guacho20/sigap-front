@@ -1,3 +1,91 @@
+:host ::ng-deep {
+    .p-paginator {
+        font-size: 0.8rem;
+        padding: 0;
+        background: none;
+        //background: linear-gradient(0deg, rgba(254,254,254,1) 0%, rgba(238,238,238,1) 100%);
+        padding-top: 0;
+        padding-bottom: 0;
+        padding-right: 0;
+        margin-top: 0;
+        // justify-content: center;
+        border: 0;
+        .p-dropdown {
+          height: 25px;
+          .p-dropdown-label {
+            padding: 0;
+            font-size: 0.85rem;
+            padding-left: 5px;
+          }
+        }
+      }
+    .p-datatable {
+        .p-datatable-loading-overlay {
+          background-color: rgba(0, 0, 0, 0.2);
+        }
+    
+        .pi-sort-alt::before {
+          font-size: 11px;
+        }
+        .pi-sort-amount-up-alt::before {
+          font-size: 11px;
+        }
+        .pi-sort-amount-down::before {
+          font-size: 11px;
+        }
+    
+        .pi-filter::before {
+          font-size: 11px;
+        }
+    
+        .p-datatable-thead > tr > th,
+        .p-datatable-tfoot > tr > td {
+          font-size: 0.8rem;
+          border-collapse: collapse;
+          padding: 0.2rem;
+          background-color: #2f3d4a;
+          color: #fff;
+          text-align: center;
+        }
+        .p-datatable-tbody > tr > td {
+          font-size: 0.85rem;
+          border-collapse: collapse;
+          padding: 0.1rem;
+        }
+    
+        .p-inputtext-sm .p-inputtext {
+          padding: 0.4px;
+          font-size: 0.85rem !important;
+          background: none;
+        }
+    
+        .p-paginator-top {
+          font-size: 0.8rem;
+          background: none;
+          //background: linear-gradient(0deg, rgba(254,254,254,1) 0%, rgba(238,238,238,1) 100%);
+          padding-top: 0;
+          padding-bottom: 0;
+          margin-top: 0;
+          //float: right;
+          border: 0;
+          margin-top: -5px;
+        }
+      }
+
+      
+}
+.width100 {
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+  }
+  
+  .width10 {
+    width: 10%;
+    max-width: 10%;
+    min-width: 10%;
+  }
+
 /*
  * Component: Box
  * --------------
@@ -419,4 +507,11 @@ h5.title-forms {
     font-size: 16px;
     padding: 0%;
     margin: -0.9rem 0rem;
+}
+
+.header-top {
+    background: #bd3119;
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 20px;
 }

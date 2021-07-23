@@ -10,9 +10,14 @@
 <div class="row">
     <div class="col-12">
         <div class="box box-info">
-            <ngp-barra>
-                <ngp-boton (click)="subirArchivo()" icono="pi pi-upload" texto="Subir Matriz"></ngp-boton>
-            </ngp-barra>
+            <div class="row mb-0">
+                <div class="col-sm-12 pb-2">
+                    <ngp-boton *ngIf="isPrint" (click)="subirArchivo()" icono="pi pi-upload" texto="Subir Matriz"></ngp-boton>
+                    <ngp-boton [hidden]="!tienePermiso" (click)="abrirVisualizador()" icono="pi pi-print" color="info"
+                        texto="Reporte avance proyecto">
+                    </ngp-boton>
+                </div>
+            </div>
             <div class="card-body">
                 <ngp-tabla #tabTabla1></ngp-tabla>
                 <hr>
@@ -29,7 +34,7 @@
                             <i *ngIf="semaforo==='rojo'" class="fa fa-circle fa-5x text-danger"></i>
                             <i *ngIf="!semaforo" class="fa fa-circle fa-5x text-blue"></i>
                         </div>
-                        <h5 class="mt-2"><strong>TOTAL (%): </strong> {{total}}</h5>
+                        <h5 class="mt-2"><strong>TOTAL: </strong> {{total}}</h5>
                     </div>
                 </div>
                 <hr>
@@ -42,4 +47,9 @@
         </div>
     </div>
 </div>
-<app-upload-archivo [(display)]="isOpenModal" (close)="closeDialogo($event)" (isSubido)="actualizarTabla($event)"></app-upload-archivo>
+<app-upload-archivo [(display)]="isOpenModal" (close)="closeDialogo($event)" (isSubido)="actualizarTabla($event)">
+</app-upload-archivo>
+<p-dialog header="Reporte" (onShow)="abriModal($event)" [breakpoints]="{'960px': '75vw', '640px': '100vw'}"
+    [style]="{width: '800px'}" [closeOnEscape]="false" [(visible)]="isDibujarReporte" modal="true">
+    <div id="pdf"> </div>
+</p-dialog>

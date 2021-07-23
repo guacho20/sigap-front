@@ -13,6 +13,7 @@ import { DireccionComponent } from './pages/direccion/direccion.component';
 import { ComponenteComponent } from './pages/componente/componente.component';
 import { ObjetivosComponent } from './pages/objetivos/objetivos.component';
 import { ComponentsModule } from './components/components.module';
+import { ResponsableProyectoComponent } from './pages/responsable-proyecto/responsable-proyecto.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ComponentsModule } from './components/components.module';
     ProyectoComponent,
     DireccionComponent,
     ComponenteComponent,
-    ObjetivosComponent
+    ObjetivosComponent,
+    ResponsableProyectoComponent
   ],
   imports: [
     CommonModule,

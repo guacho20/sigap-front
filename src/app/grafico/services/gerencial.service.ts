@@ -57,7 +57,7 @@ export class GerencialService {
     return this.http.post<any>(`${this.api}/gerencialpdot/getDetalleProyecto`, body).pipe(
       map(res => {
         res.datos.forEach(element => {
-          console.log(element);
+          // console.log(element);
           etiqueta.push(element.anio+' '+element.abreviatura_ystmen)
           valor.push(element.suma_porce)
         });
